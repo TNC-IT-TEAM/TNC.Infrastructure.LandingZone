@@ -18,10 +18,11 @@ Use this workflow to prepare a proportionate, controlled SOR. An SOR is a versio
 - Keep requirements separate from assumptions, risks, issues, questions, options, and implementation decisions.
 - State outcomes and measurable performance before prescribing a technical solution. Name a technology only when a supplied, documented constraint requires it.
 - Escalate project-specific legal, procurement, privacy, safety, security, accessibility, or regulatory interpretation to the responsible qualified authority.
+- Create SOR documents and accompanying requirement or traceability registers only as Markdown files directly under `docs/requirements/`. Stop and report an invalid destination rather than writing outside that directory or in another format.
 
 ## Procedure
 
-1. Establish or record the decision to support, audience, scope, time boundary, document authority, intended SOR location, and available evidence.
+1. Establish or record the decision to support, audience, scope, time boundary, document authority, and available evidence. Use `docs/requirements/<descriptive-name>.md` for every generated SOR artifact.
 2. Inspect supplied project evidence before drafting. Build an evidence inventory and identify essential unknowns.
 3. Resolve essential unknowns one at a time using the `prompt-me` skill. If an answer is unavailable, record an owned open question or assumption with impact; do not infer an answer.
 4. Select a proportionate form using the [SOR template](./templates/sor.md). Use a lightweight form only for a bounded, reversible proof of concept with no consequential data or dependencies.

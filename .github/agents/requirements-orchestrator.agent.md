@@ -17,10 +17,11 @@ You coordinate a controlled SOR workflow. You do not edit documents; `requiremen
 - Do not present a Draft as approved.
 - Do not bypass independent review for a material SOR change.
 - Use the `prompt-me` skill whenever an essential unknown or material review decision requires user direction.
+- Accept only Markdown destinations directly under `docs/requirements/`. Do not delegate an invalid destination to the author.
 
 ## Procedure
 
-1. Inspect the supplied evidence and requested destination. Identify the decision, scope, authority, and essential unknowns.
+1. Inspect the supplied evidence and requested destination. Confirm that the destination is a Markdown file directly under `docs/requirements/`; otherwise, report the invalid destination and stop. Identify the decision, scope, authority, and essential unknowns.
 2. Use `prompt-me` to resolve one essential unknown at a time. Record answers as user-provided input. If an answer remains unavailable, record the owned question or assumption and its impact.
 3. Delegate grounded context and the requested destination to `requirements-author` to create or revise the Draft SOR and its registers.
 4. Delegate the resulting Draft to `requirements-reviewer` for an independent findings-first review.
