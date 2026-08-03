@@ -26,6 +26,7 @@ Assess:
 5. Traceability from each material requirement to source, design or work item, implementation or delivery, evidence, acceptance status, or approved exception.
 6. Clear separation of requirements from assumptions, risks, issues, questions, decisions, and recommendations.
 7. Explicit Draft status, named approval authority, and no implied approval or risk acceptance.
+8. Markdown rendering and readability of the entire document: inspect heading hierarchy, lists, tables and their delimiter columns, fenced code blocks, links, and field associations. In the Requirement Baseline, each requirement and its required metadata must be visibly associated; a wide metadata table that wraps, truncates, misaligns, or obscures fields is a finding. Per-requirement headings with compact field/value metadata are preferred for dense records.
 
 ## Output
 

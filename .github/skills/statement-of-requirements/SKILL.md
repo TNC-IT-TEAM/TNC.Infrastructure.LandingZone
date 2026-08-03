@@ -29,9 +29,10 @@ Use this workflow to prepare a proportionate, controlled SOR. An SOR is a versio
 5. Draft requirements with the [requirement register](./templates/requirement-register.md) and [requirement-writing rules](./references/requirement-writing-rules.md). Each mandatory requirement must be atomic, outcome-oriented, and feasible to verify.
 6. Plan verification and acceptance alongside the requirement using [verification methods](./references/verification-methods.md). Record the evidence, pass criterion where applicable, responsible party, and acceptance authority.
 7. Capture lifecycle links in the [traceability register](./templates/traceability-register.md), from source through design, delivery, implementation, evidence, and acceptance or approved exception.
-8. Use the [elicitation checklist](./checklists/elicitation.md) to expose missing scope, governance, operational, security, dependency, cost, and acceptance information.
-9. Run the [quality review checklist](./checklists/quality-review.md) before presenting a draft for stakeholder review. Report every failed or unverified check.
-10. Present the Draft status, change summary, evidence inventory, review findings, open questions, assumptions, risks, and approval actions. A named human must approve the baseline and material changes.
+8. Use renderer-safe Markdown for requirement metadata. Do not use a wide requirements table when its columns are likely to wrap, truncate, or misalign; instead, use a heading for each requirement with a compact two-column `Field | Value` table or field list.
+9. Use the [elicitation checklist](./checklists/elicitation.md) to expose missing scope, governance, operational, security, dependency, cost, and acceptance information.
+10. Run the [quality review checklist](./checklists/quality-review.md) before presenting a draft for stakeholder review. Report every failed or unverified check.
+11. Present the Draft status, change summary, evidence inventory, review findings, open questions, assumptions, risks, and approval actions. A named human must approve the baseline and material changes.
 
 ## Mandatory Requirement Metadata
 

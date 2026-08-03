@@ -15,6 +15,7 @@ Mark each failed or unverified check as a finding. Passing this checklist means 
 - [ ] Each requirement is atomic, normative, outcome-oriented, and free of vague qualifiers.
 - [ ] A technical prescription is retained only where an evidence-backed constraint justifies it.
 - [ ] Each requirement has a feasible verification method, objective pass criterion where relevant, required evidence, and acceptance authority.
+- [ ] The entire document renders as valid, readable Markdown. Check heading hierarchy, lists, tables and their delimiter columns, fenced code blocks, links, and field associations. Do not use a wide requirement table where metadata columns wrap, truncate, or misalign; use per-requirement headings with compact field/value metadata where needed.
 
 ## Coverage and Traceability
 
