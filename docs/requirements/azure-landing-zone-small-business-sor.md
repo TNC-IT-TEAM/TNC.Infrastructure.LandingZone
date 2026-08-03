@@ -1,43 +1,43 @@
 # Azure Landing Zone Platform for One Initial Application - Statement of Requirements
 
 > Status: Draft
-> Version: 0.6
+> Version: 2.1
 > Date: 2026-08-03
-> Baseline, evidence, exception, and production-entry authority: Executive sponsor (identity not supplied)
+> Baseline, evidence, exception, and production-entry authority: Martyn Fewtrell (executive sponsor); no approval or authorization has been recorded
 > Approval status: Not approved
 
 ## Purpose and Decision
 
 - **Problem or opportunity:** The business needs a production-capable Azure landing-zone platform for one initial application without enterprise-scale structure or unconfirmed corporate controls.
-- **Intended outcome:** A small, operable Azure platform that provides environment isolation, controlled access and deployment, observability, recovery-enabling services, cost guardrails, and an evidence-based path to grow.
+- **Intended outcome:** A small, operable Azure platform that provides environment isolation, controlled access and deployment, observability, recovery-enabling services, cost guardrails, support for the one initial application, which is containerized, through applicable platform capabilities, and an evidence-based path to grow.
 - **Decision supported:** Whether this Draft describes the platform capabilities required to design and deliver the initial application foundation.
 - **Success measures:** The initial application can use every applicable platform capability with the stated verification evidence; unknown design inputs remain visible; this Draft implies no baseline or production-entry decision.
 - **Audience:** Executive sponsor; prospective platform and application owners; delivery team or service provider.
-- **Scope and time boundary:** This Draft covers an Azure landing-zone platform for one initial application. It reflects evidence available on 2026-08-03 and does not select a region, architecture, licence, budget, provider, topology, recovery objective, or implementation.
+- **Scope and time boundary:** This Draft covers an Azure landing-zone platform for one initial application, including dedicated test and production environments for that one application, which is containerized. It reflects evidence available on 2026-08-03 and does not select a region, architecture, licence, budget, provider, topology, recovery-objective classification, container hosting solution, Azure service, resource set, or implementation.
 
 ## Scope and Boundaries
 
 **In scope**
 
-- Minimal Azure resource and governance structure for one application.
-- Production and nonproduction isolation where both environments are required.
-- Identity and privileged access, safe configuration and deployment, policy/control capability, observability, alerting, recovery-enabling services, cost visibility and guardrails, network/connectivity patterns, and growth triggers.
+- Minimal Azure resource and governance structure for one application, including support for required site-to-site and point-to-site VPN connectivity.
+- Dedicated test and production environments with effective isolation between them.
+- Identity and privileged access, safe configuration and deployment, policy/control capability, observability, alerting, recovery-enabling services, cost visibility and guardrails, network/connectivity patterns, support for the one initial containerized application's applicable platform capabilities, and growth triggers.
 
 **Out of scope**
 
 - Corporate governance bodies, finance processes, periodic access reviews, organization-wide operating cadence, risk appetite, broad compliance procedures, and corporate approval workflows.
-- Application architecture, data classification, regulatory interpretation, region, RTO/RPO, budget, licensing, support agreement, service provider, network topology, and implementation selection.
+- Application architecture, container hosting solution, container runtime, registry, Kubernetes, Azure Container Apps, AKS, container registry, networking pattern, identities, secrets approach, Azure resource selection, data classification, regulatory interpretation, region, RTO/RPO classification, budget, licensing, support agreement, service provider, network topology, and implementation selection.
 - Approval of a requirement baseline, production deployment, exception, or implementation design.
 
-**Boundary:** Application and platform design inputs determine configuration for the initial application. This Draft does not turn unknown inputs into requirements.
+**Boundary:** Application and platform design inputs determine configuration and the applicability of platform capabilities for the one initial application, which is containerized. User-provided input indicates application resource boundaries will be managed by the application, but the Azure platform governance boundaries and the impact of that statement on platform design remain unresolved. This Draft does not turn unknown inputs into requirements or select a container hosting solution, Azure service, or resource set.
 
 ## Stakeholders and Governance
 
 | Role | Named person or team | Accountability | Approval or escalation authority |
 | --- | --- | --- | --- |
-| Executive sponsor | Identity not supplied | May approve the SOR baseline, accept requirement evidence, approve exceptions, and authorize production entry only after the individual is named. | Only the named individual may perform those actions. |
-| Platform owner | To be named | Delivers and operates the platform capabilities. | Escalates platform capability gaps to the executive sponsor. |
-| Initial application owner | To be named | Supplies application design inputs and validates application use of the platform. | Escalates unresolved application inputs to the executive sponsor. |
+| Executive sponsor | Martyn Fewtrell | May approve the SOR baseline, accept requirement evidence, approve exceptions, and authorize production entry only through the required records and conditions. | Only Martyn Fewtrell may perform those actions. |
+| Platform owner | To be named | Delivers and operates the platform capabilities and supplies home-office network and VPN technical inputs. | Escalates platform capability gaps or unresolved home-office network and VPN technical inputs to the executive sponsor. |
+| Initial application owner | To be named | Supplies application design inputs, authorizes remote users, devices, and required application flows, and validates application use of the platform. | Escalates unresolved application inputs or authorization needs to the executive sponsor. |
 
 Roles are needed accountabilities, not assigned people, corporate functions, or approval workflows.
 
@@ -45,117 +45,124 @@ Roles are needed accountabilities, not assigned people, corporate functions, or 
 
 | ID | Source | Date/version | Claim supported | Evidence status |
 | --- | --- | --- | --- | --- |
-| EVD-001 | User-provided input | 2026-08-03 | Production-capable Azure foundation for material workloads; executive sponsor is approval, evidence, and production-entry authority but unnamed. | User-provided |
-| EVD-002 | [Azure Landing Zone Guidance for a Small Business](../research/azure-landing-zone-small-business-guidance.md) | Research date 2026-08-03 | Small landing-zone platform capabilities, design dependencies, and growth triggers. | Research evidence; observations and recommendations are distinct |
+| EVD-001 | User-provided input | 2026-08-03 | Production-capable Azure foundation for material workloads; Martyn Fewtrell is the named executive sponsor and is the approval, evidence, exception, and production-entry authority by role. | User-provided |
+| EVD-002 | [Azure Landing Zone Guidance for a Small Business](../research/azure-landing-zone-small-business-guidance.md) | Research date 2026-08-03 | Nonbinding research guidance on small landing-zone capabilities, design dependencies, and growth triggers. | Research evidence; observations and recommendations are distinct |
 | EVD-003 | User-provided scope refinement | 2026-08-03 | Focus on platform capabilities for one initial application; exclude corporate compliance and management processes unless needed to define or validate a capability. | User-provided |
+| EVD-004 | User-provided connectivity and ownership input | 2026-08-03 | The Azure landing zone must support a site-to-site VPN between the home-office network and Azure and point-to-site VPN access for individual home-office users and devices; the platform owner supplies home-office network and VPN technical inputs, and the initial application owner authorizes remote users, devices, and required application flows. | User-provided; primary direct source for VPN requirements |
+| EVD-005 | User-provided containerized application and boundary clarification | 2026-08-03 | The one initial application in scope is the containerized application; no second application is in scope. The Azure landing zone must support that containerized application without selecting a container hosting solution, Azure service, or resource set. User input also states application resource boundaries will be managed by the application, but does not resolve Azure platform governance boundaries. | User-provided; primary direct source for containerized-application scope clarification |
+| EVD-006 | User-provided drafting decision | 2026-08-03 | Apply solution-neutral drafting across the entire SOR. Requirements must state outcomes and capabilities rather than implementation patterns unless directly user-provided. | User-provided; governs this material Draft revision |
+| EVD-007 | User-provided growth reassessment decision | 2026-08-03 | Growth reassessment requires a documented trigger-selection basis and reassessment action; no fixed trigger catalogue is required. | User-provided; primary direct source for ALZ-PLT-111 revision |
+| EVD-008 | User-provided alert-verification decision | 2026-08-03 | ALZ-PLT-107 verification tests representative privileged-access and platform-configuration change conditions only, rather than every configured or documented alert condition. | User-provided; primary direct source for ALZ-PLT-107 verification scope |
+| EVD-009 | User-provided scope decision | 2026-08-03 | Both a dedicated test environment and a dedicated production environment are mandatory for the one initial containerized application in scope. | User-provided; primary direct source for environment scope |
+| EVD-010 | User-provided evidence-retention decision | 2026-08-03 | Controlled platform evidence and acceptance records must be retained, but this Draft must not prescribe how or where retention is implemented. | User-provided; primary direct source for evidence-retention wording |
 
 Research observations support requirement rationale. Recommendations and target-state examples are not approved requirements or implementation decisions.
 
 ## Requirement Baseline
 
-All entries are mandatory Draft requirements. `Must` identifies a capability required for the initial application where applicable. Dependencies are design inputs or linked capabilities, not approvals. The executive sponsor is the acceptance authority by role only; the named individual remains unresolved in QST-001.
+All entries are mandatory Draft requirements. `Must` identifies a capability required for the initial application where applicable. Dependencies are design inputs or linked capabilities, not approvals. Martyn Fewtrell is the named executive sponsor and acceptance authority by role; this Draft records no approval or authorization.
 
-### ALZ-PLT-101
+### ALZ-PLT-117
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall provide a documented Azure governance and resource structure that identifies the management scope and resource scope used by the initial application. |
-| Type | Platform structure |
-| Source or rationale | EVD-002; management groups and subscriptions provide governance scopes, and a shallow structure is recommended for a small estate. |
+| Normative requirement | The platform shall provide documented Azure platform governance boundaries and application resource boundaries that identify each boundary's purpose and the initial application's placement. |
+| Type | Platform boundaries |
+| Source or rationale | EVD-002, EVD-006; documented boundaries support governable placement without selecting a governance structure or resource arrangement. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
 | Dependency | QST-002, QST-003 |
 | Verification method | Inspection |
-| Objective pass criterion | The structure record identifies each management scope and application resource scope, its purpose, and the initial application's placement. |
-| Required evidence | Platform structure record and deployed-scope inventory |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | The boundary record identifies every applicable platform governance boundary and application resource boundary, its purpose, and the initial application's placement. |
+| Required evidence | Platform-boundary record and deployed-boundary inventory |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
-### ALZ-PLT-102
+### ALZ-PLT-118
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | Where the initial application requires both production and nonproduction environments, the platform shall provide distinct deployment scopes that prevent a deployment identity assigned to one environment from modifying the other without an explicitly assigned role in that other environment. |
+| Normative requirement | The platform shall provide dedicated test and production environments for the initial application and effective environment isolation such that authorized deployment activity for one environment cannot modify the other without separate authorization for that other environment. |
 | Type | Isolation |
-| Source or rationale | EVD-002; separate production and nonproduction subscriptions are the recommended first isolation split for production workloads. |
+| Source or rationale | EVD-002, EVD-006, EVD-009; dedicated test and production environments and their isolation are required without selecting an isolation arrangement or authorization mechanism. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
-| Dependency | ALZ-PLT-101, QST-002 |
+| Dependency | ALZ-PLT-117, QST-002 |
 | Verification method | Inspection and test |
-| Objective pass criterion | Distinct scopes are inventoried, and a test deployment identity assigned only to one environment cannot modify resources in the other. |
-| Required evidence | Environment-scope inventory, role-assignment inventory, and isolation test record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | Dedicated test and production environment boundaries are inventoried, and separate tests show that deployment activity authorized only for test cannot modify production and deployment activity authorized only for production cannot modify test. |
+| Required evidence | Dedicated test and production environment-boundary inventory, separate authorization records, and separate test-to-production and production-to-test isolation test records |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
-### ALZ-PLT-103
+### ALZ-PLT-119
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall use group-based Azure access assignments for human platform administration, except for direct emergency-recovery access recorded with its recovery purpose, and shall provide an independently usable recovery path for loss of normal privileged access. |
+| Normative requirement | The platform shall provide controlled human privileged access and an independently usable recovery access path that can restore authorized platform administration when normal privileged access is unavailable. |
 | Type | Identity and access |
-| Source or rationale | EVD-002; Azure RBAC guidance recommends group assignments, narrower scopes, and emergency access. |
+| Source or rationale | EVD-002, EVD-006; controlled privileged access and recovery are required without selecting an access-assignment or recovery mechanism. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
 | Dependency | QST-004 |
 | Verification method | Inspection and test |
-| Objective pass criterion | Every human administrative assignment is group-based or references a direct emergency-recovery record, and a controlled test restores authorized administrative access without normal privileged access. |
-| Required evidence | Privileged-access inventory, emergency-recovery record and procedure, and recovery test record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | The privileged-access inventory identifies each human administrator, its authorization basis, and its purpose; a controlled test restores authorized administrative access without normal privileged access. |
+| Required evidence | Privileged-access inventory, recovery-access record and procedure, and recovery test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
-### ALZ-PLT-112
+### ALZ-PLT-120
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | Before human privileged access is used in production, the platform shall require multi-factor authentication such that compromise of one authentication factor alone cannot authorize that access. |
+| Normative requirement | Before human privileged access is used in production, the platform shall protect that access such that compromise of one authentication factor alone cannot authorize it. |
 | Type | Identity security |
-| Source or rationale | EVD-002; research requires MFA before production and states that exact Entra configuration and licensing require validation. |
+| Source or rationale | EVD-002, EVD-006; authentication resilience is required without selecting an identity service or authentication mechanism. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
 | Dependency | QST-004 |
 | Verification method | Inspection and test |
-| Objective pass criterion | The privileged-access configuration identifies each human privileged access population and test evidence demonstrates that possession or compromise of one authentication factor alone does not authorize privileged access. |
-| Required evidence | Privileged-access configuration, authentication-control evidence, and authentication-factor test record |
-| Acceptance authority | Named executive sponsor (QST-001) |
+| Objective pass criterion | The privileged-access record identifies each human privileged access population and test evidence demonstrates that possession or compromise of one authentication factor alone does not authorize privileged access. |
+| Required evidence | Privileged-access record, authentication-protection evidence, and authentication-factor test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
-### ALZ-PLT-104
+### ALZ-PLT-121
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall maintain a complete inventory of applicable deployable platform configurations and reconcile each inventory item to its version-controlled source and deployed state before production operation depends on that item. |
+| Normative requirement | The platform shall maintain a complete inventory of applicable deployable platform configurations and reconcile each inventory item to its identified controlled configuration definition and deployed state before production operation depends on that item. |
 | Type | Configuration management |
-| Source or rationale | EVD-002; research recommends infrastructure as code and source control to limit drift and support change recovery. |
+| Source or rationale | EVD-002, EVD-006; configuration reconciliation is required without selecting a configuration-management or deployment mechanism. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
 | Dependency | QST-005 |
 | Verification method | Inspection and demonstration |
-| Objective pass criterion | The inventory identifies every applicable deployable platform configuration; every inventory item links to its version-controlled source and deployed state; and reconciliation records identify any mismatch and disposition. Representative deployments may supplement but cannot replace item-level reconciliation. |
-| Required evidence | Complete configuration inventory, source revisions, deployed-state records, item-level reconciliation records, and representative deployment demonstration record where used |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | The inventory identifies every applicable deployable platform configuration; every inventory item links to its identified controlled configuration definition and deployed state; and reconciliation records identify any mismatch and disposition. Representative deployments may supplement but cannot replace item-level reconciliation. |
+| Required evidence | Complete configuration inventory, controlled configuration definitions, deployed-state records, item-level reconciliation records, and representative deployment demonstration record where used |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ### ALZ-PLT-105
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall provide a policy or control capability that evaluates the initial application's applicable resource configuration at documented scopes and records the result. |
-| Type | Control capability |
-| Source or rationale | EVD-002; Azure Policy supports evaluation at management-group, subscription, resource-group, and resource scopes. |
+| Normative requirement | The platform shall evaluate the initial application's applicable resource configuration at documented boundaries and record each result. |
+| Type | Configuration evaluation |
+| Source or rationale | EVD-002, EVD-006; configuration evaluation and recorded results are required without selecting a control service or mechanism. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
-| Dependency | ALZ-PLT-101, QST-002 |
+| Dependency | ALZ-PLT-117, QST-002 |
 | Verification method | Demonstration |
-| Objective pass criterion | A test resource configuration at each applicable scope produces a recorded compliant or noncompliant result retrievable by an authorized platform operator. |
-| Required evidence | Control configuration, scope record, and evaluation demonstration record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | A test resource configuration at each applicable boundary produces a recorded evaluation result retrievable by an authorized platform operator. |
+| Required evidence | Evaluation-method record, boundary record, and evaluation demonstration record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ### ALZ-PLT-106
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall collect and make retrievable Azure control-plane activity logging and application diagnostic information selected from the initial application's documented observability inputs. |
+| Normative requirement | The platform shall collect and make retrievable Azure control-plane activity information and application diagnostic information selected from the initial application's documented observability inputs. |
 | Type | Observability |
 | Source or rationale | EVD-002; research identifies activity and diagnostic logging as required to investigate platform changes, security events, and production failures. |
 | Priority | Must |
@@ -164,30 +171,30 @@ All entries are mandatory Draft requirements. `Must` identifies a capability req
 | Dependency | QST-006 |
 | Verification method | Demonstration |
 | Objective pass criterion | A test control-plane activity is retrievable by an authorized operator, and for each selected application diagnostic category a test event is retrievable from the recorded destination. |
-| Required evidence | Observability input record, activity-log configuration, diagnostic configuration, and retrieval test records |
-| Acceptance authority | Executive sponsor |
+| Required evidence | Observability input record, control-plane activity collection record, diagnostic collection record, and retrieval test records |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ### ALZ-PLT-107
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall provide actionable alerts for privileged-access and platform-configuration changes, each with a configured response destination. |
+| Normative requirement | The platform shall provide alerts for privileged-access and platform-configuration changes, and each configured alert shall identify a response destination, responder, and documented response action. |
 | Type | Alerting |
-| Source or rationale | EVD-002; research recommends a small actionable alert set with an owner and response path. |
+| Source or rationale | EVD-002, EVD-008; research supports alerts with an owner and response path, and the user-provided decision defines representative verification scope. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
 | Dependency | ALZ-PLT-106, QST-006 |
-| Verification method | Test |
-| Objective pass criterion | A representative privileged-access change and a representative platform-configuration change each produce an alert at their configured response destination. |
-| Required evidence | Alert configuration, response-destination record, and alert test records |
-| Acceptance authority | Executive sponsor |
+| Verification method | Test and inspection |
+| Objective pass criterion | The configured-alert record identifies the response destination, responder, and documented response action for every configured alert. Separate test records show that one representative privileged-access change and one representative platform-configuration change each produce an alert at its identified response destination. The two representative test records do not test every configured alert condition. |
+| Required evidence | Configured-alert record identifying the response destination, responder, and documented response action for every configured alert; one representative privileged-access change alert test record; and one representative platform-configuration change alert test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ### ALZ-PLT-108
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall provide recovery-enabling services for each stateful component of the initial application according to its documented recovery inputs, including a method to create recoverable data and a method to test restoration. |
+| Normative requirement | The platform shall provide recovery capability for each stateful component of the initial application according to its documented recovery inputs, including a method to create recoverable data and a method to test restoration. |
 | Type | Reliability |
 | Source or rationale | EVD-002; recovery goals derive from business requirements and require documented, tested recovery plans. |
 | Priority | Must |
@@ -195,96 +202,153 @@ All entries are mandatory Draft requirements. `Must` identifies a capability req
 | Status | Draft |
 | Dependency | QST-007 |
 | Verification method | Inspection and test |
-| Objective pass criterion | Each documented stateful component has a configured recovery method, and a restoration test demonstrates recovery using that method. |
-| Required evidence | Recovery-input record, recovery configuration, and restoration test record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | Each documented stateful component has a documented recovery method, and a restoration test demonstrates recovery using that method. |
+| Required evidence | Recovery-input record, recovery-capability record, and restoration test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ### ALZ-PLT-109
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall provide cost visibility for the initial application through an attributable cost scope and shall provide a configurable spend-alert guardrail for that scope. |
+| Normative requirement | The platform shall provide cost visibility attributable to the initial application and a spend-alert guardrail for that attributable cost. |
 | Type | Cost management |
-| Source or rationale | EVD-002; Cost Management guidance recommends accountability, budgets, alerts, and investigation of anomalies. |
+| Source or rationale | EVD-002; research supports accountable cost visibility, spend alerts, and investigation of anomalies. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
-| Dependency | ALZ-PLT-101, QST-008 |
+| Dependency | ALZ-PLT-117, QST-008 |
 | Verification method | Demonstration |
-| Objective pass criterion | Cost data for the initial application's attributable scope is retrievable, and a representative actual or forecast threshold produces an alert at the configured destination. |
-| Required evidence | Cost-scope record, cost-view retrieval record, budget or alert configuration, and alert test record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | Cost data attributable to the initial application is retrievable, and a representative actual or forecast threshold produces an alert at the identified destination. |
+| Required evidence | Cost-attribution record, cost-view retrieval record, spend-alert record, and alert test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
-### ALZ-PLT-110
+### ALZ-PLT-122
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall provide a documented network and connectivity pattern for the initial application that identifies its required flows, public or internal exposure, and the platform controls used to permit or restrict those flows. |
+| Normative requirement | The platform shall provide connectivity for the initial application's documented authorized flows and exposure needs, and shall restrict a documented verification-only flow not authorized for that connectivity. |
 | Type | Connectivity |
-| Source or rationale | EVD-002; network topology and placement depend on exposure, dependencies, and connectivity requirements. |
+| Source or rationale | EVD-002, EVD-006; required connectivity outcomes are retained without selecting a network pattern or control mechanism. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
 | Dependency | QST-009 |
 | Verification method | Inspection and test |
-| Objective pass criterion | The network pattern identifies every required flow and exposure classification, and tests demonstrate that one permitted flow succeeds while one restricted flow is denied. |
-| Required evidence | Network-pattern record, network configuration, and connectivity test record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | The connectivity record identifies every documented authorized flow and exposure need, and tests demonstrate that one authorized flow succeeds while one verification-only unauthorized flow is denied. |
+| Required evidence | Connectivity record, authorization record, and connectivity test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-114
+
+| Field | Value |
+| --- | --- |
+| Normative requirement | The platform shall provide site-to-site VPN connectivity between the home-office network and Azure for each documented and authorized applicable route and application flow. |
+| Type | Site-to-site VPN connectivity |
+| Source or rationale | EVD-004; primary direct user-provided connectivity input. |
+| Priority | Must |
+| Owner | Platform owner |
+| Status | Draft |
+| Dependency | ALZ-PLT-122, QST-009, QST-011, QST-013 |
+| Verification method | Inspection and test |
+| Objective pass criterion | Capability evidence identifies the documented applicable site-to-site routes and application flows authorized by the initial application owner; an authorized-path test succeeds for each applicable documented route and flow; and either a denied-path test demonstrates denial for a documented verification-only denied test candidate or a documented non-applicability rationale records why no denied-path candidate applies to verification. |
+| Required evidence | Home-office network and site-to-site VPN technical-input record, initial-application-owner flow-authorization record, site-to-site VPN capability record, applicable route-and-flow record, authorized-path test record, and either an initial-application-owner verification-only denied test-candidate record with denied-path test record or a documented non-applicability rationale |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-115
+
+| Field | Value |
+| --- | --- |
+| Normative requirement | The platform shall provide point-to-site VPN access for each remote home-office user and device authorized for its documented applicable route and application flow. |
+| Type | Point-to-site VPN connectivity |
+| Source or rationale | EVD-004; primary direct user-provided connectivity input. |
+| Priority | Must |
+| Owner | Platform owner |
+| Status | Draft |
+| Dependency | ALZ-PLT-122, QST-009, QST-012, QST-014 |
+| Verification method | Inspection and test |
+| Objective pass criterion | Capability evidence identifies each remote user and device and its documented applicable routes and application flows authorized by the initial application owner; an authorized-path test succeeds for each applicable authorized user or device route and flow; and either a denied-path test demonstrates denial for a documented verification-only denied test candidate or a documented non-applicability rationale records why no denied-path candidate applies to verification. |
+| Required evidence | Point-to-site VPN technical-input record, initial-application-owner authorization record for remote users, devices, routes, and flows, point-to-site VPN capability record, applicable access record, authorized-path test record, and either an initial-application-owner verification-only denied test-candidate record with denied-path test record or a documented non-applicability rationale |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-116
+
+| Field | Value |
+| --- | --- |
+| Normative requirement | The platform shall maintain a documented, evidence-based applicability assessment for the one initial application, which is containerized, covering access, deployment and configuration management, observability, recovery, cost, and connectivity; record an applicable or not-applicable disposition for each area; and demonstrate the application's consumption of every applicable capability. |
+| Type | Containerized application platform capability |
+| Source or rationale | EVD-005; user-provided outcome requires support for the one initial containerized application without selecting a container hosting solution, Azure service, or resource set. |
+| Priority | Must |
+| Owner | Platform owner |
+| Status | Draft |
+| Dependency | ALZ-PLT-105 through ALZ-PLT-109, ALZ-PLT-117 through ALZ-PLT-122, QST-015; ALZ-PLT-114 where site-to-site VPN connectivity is applicable; ALZ-PLT-115 where point-to-site VPN connectivity is applicable |
+| Verification method | Inspection and demonstration |
+| Objective pass criterion | The applicability assessment records an evidence-based applicable or not-applicable disposition for each named area, and successful consumption evidence exists for every applicable capability. |
+| Required evidence | Container-specific technical-documentation input record; documented applicability assessment; evidence supporting each disposition; applicable platform-capability records; and consumption evidence for every applicable capability, including ALZ-PLT-114 or ALZ-PLT-115 evidence where the corresponding VPN connectivity is applicable |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ### ALZ-PLT-111
 
 | Field | Value |
 | --- | --- |
-| Normative requirement | The platform shall maintain a growth-trigger record that identifies the observed condition, impact, and reassessment action for expanding the initial platform structure or shared services. |
+| Normative requirement | The platform shall maintain a documented growth reassessment record that states the trigger-selection basis and reassessment action for expanding the initial platform capabilities. |
 | Type | Evolution |
-| Source or rationale | EVD-002; recommended triggers include another independently owned workload, sensitive or regulated data, private connectivity, shared ingress or egress, delegated teams, availability commitments, and recurring manual operations. |
+| Source or rationale | EVD-002, EVD-007; growth reassessment is required without prescribing a fixed trigger catalogue or future implementation. |
 | Priority | Must |
 | Owner | Platform owner |
 | Status | Draft |
-| Dependency | ALZ-PLT-101 through ALZ-PLT-110 |
+| Dependency | ALZ-PLT-105 through ALZ-PLT-109, ALZ-PLT-117 through ALZ-PLT-122 |
 | Verification method | Inspection |
-| Objective pass criterion | The record contains each trigger relevant to the initial application and its reassessment action without selecting a future implementation. |
-| Required evidence | Growth-trigger record |
-| Acceptance authority | Executive sponsor |
+| Objective pass criterion | The growth reassessment record states the basis used to select its trigger or triggers and the reassessment action for each selected trigger without selecting a future implementation. |
+| Required evidence | Growth reassessment record containing the documented trigger-selection basis and reassessment action |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
 
 ## Verification and Acceptance
 
-- **Verification environments and data constraints:** Use nonproduction environments and representative non-sensitive test data where available. The need for production testing remains an application design input.
-- **Evidence location:** The controlled evidence repository or record system is not supplied and remains open in QST-010.
-- **Acceptance approach:** The platform owner assembles requirement evidence; the initial application owner validates application-specific inputs and tests. Only the named executive sponsor may approve the SOR baseline, accept evidence, approve an exception, or authorize production entry. Naming the individual is a prerequisite to each action.
-- **Exceptions:** This Draft grants no exception. An unmet requirement remains visible in traceability and only the named executive sponsor may approve a recorded exception before production entry.
+- **Verification environments and data constraints:** Verification shall use the dedicated test environment. Representative non-sensitive test data shall be used where available. Any verification performed in the dedicated production environment is supplementary and cannot replace verification in the mandatory dedicated test environment; it must remain limited to the evidence needed for the requirement and compatible with the named sponsor's production-entry boundary.
+- **Evidence retention:** Controlled platform evidence and acceptance records shall be retained. This Draft does not select the repository, record system, location, or implementation approach for that retention, and those details remain open in QST-010.
+- **Acceptance approach:** The platform owner assembles requirement evidence; the initial application owner validates application-specific inputs and tests. Only Martyn Fewtrell, as the named executive sponsor, may approve the SOR baseline, accept evidence, approve an exception, or authorize production entry, and each action still requires its respective records and conditions. This Draft records none of those actions.
+- **Exceptions:** This Draft grants no exception. An unmet requirement remains visible in traceability and only Martyn Fewtrell, as the named executive sponsor, may approve a recorded exception before production entry.
 
 ## Assumptions
 
 | ID | Statement | Owner | Impact if false | Review trigger | Status |
 | --- | --- | --- | --- | --- | --- |
 | ASM-001 | Azure is the selected cloud platform for the stated scope. | Executive sponsor | The SOR requires material revision. | Cloud-platform decision changes | Open |
-| ASM-002 | One initial application is the current platform consumer. | Executive sponsor | Platform scale and isolation requirements may change. | A second application is proposed | Open |
-| ASM-003 | The initial application may require a production environment. | Initial application owner | ALZ-PLT-102 applicability changes. | Application environment decision | Open |
+| ASM-002 | The one initial application in scope is the containerized application; no second application is in scope. | Executive sponsor | Platform scope, scale, isolation, and growth requirements may change. | A second application or a separate non-containerized application is proposed | Open |
+| ASM-003 | The initial application's test and production resource needs are not yet known, and its data characteristics and applicable obligations remain unresolved and deferred to the technical requirements. These application inputs may affect sizing, data, verification, and boundary details, but cannot remove the mandatory dedicated test environment or dedicated production environment requirement. | Initial application owner | ALZ-PLT-118, ALZ-PLT-117, and related verification may require revision. | Record the inputs in the technical requirements and progress QST-002 before platform design | Open |
 
 ## Risks
 
 | ID | Risk | Owner | Impact | Treatment or review trigger | Status |
 | --- | --- | --- | --- | --- | --- |
-| RSK-001 | Unknown application data, recovery, and exposure inputs could make an initial platform capability unsuitable. | Initial application owner | Rework or unsafe production configuration. | Resolve QST-002, QST-006, QST-007, and QST-009 before configuring affected capabilities. | Open |
-| RSK-002 | Unknown licensing or service availability could constrain identity, monitoring, recovery, or cost features. | Platform owner | Rework or unavailable capability. | Resolve QST-004 and QST-005 before implementation selection. | Open |
+| RSK-001 | Unknown home-office network, site-to-site VPN, or point-to-site VPN technical inputs and constraints could make the affected platform connectivity capability unsuitable. | Platform owner | Rework or unsuitable connectivity capability. | Resolve QST-011 and QST-012 before providing ALZ-PLT-114 or ALZ-PLT-115, as applicable. | Open |
+| RSK-004 | Unknown authorized application flows, remote users or devices, or undocumented justification for N/A verification-only denied test candidates could prevent provision or objective verification of the affected VPN capability. | Initial application owner | Rework or unverified connectivity capability. | Resolve QST-009, QST-013, and QST-014 before providing or verifying ALZ-PLT-114 or ALZ-PLT-115, as applicable. | Open |
+| RSK-002 | Unknown available capabilities, service constraints, or unresolved application-versus-platform boundary responsibilities could constrain access and authentication, configuration, observability, recovery, cost, or governance-boundary outcomes. | Platform owner | Rework, ambiguity, or unavailable capability. | Resolve QST-003 through QST-008 before the affected capability design. | Open |
 | RSK-003 | Growth beyond one application could exceed the initial platform's isolation or operational model. | Platform owner | Cost, security, or operability degradation. | Evaluate ALZ-PLT-111 when a recorded trigger occurs. | Open |
 
 ## Issues, Questions, and Decisions
 
 | ID | Type | Statement | Owner | Due date or trigger | Status |
 | --- | --- | --- | --- | --- | --- |
-| QST-001 | Question | What is the name of the executive sponsor who alone may approve the SOR baseline, accept requirement evidence, approve exceptions, and authorize production entry? | Executive sponsor | Before baseline approval, evidence acceptance, exception approval, or production entry | Open |
-| QST-002 | Question | What are the initial application's environments, resource needs, data characteristics, and applicable obligations? | Initial application owner | Before platform configuration | Open |
-| QST-003 | Question | Which management and resource scopes are appropriate for the initial application? | Platform owner | Before ALZ-PLT-101 configuration | Open |
-| QST-004 | Question | Which Entra capabilities, licensing, and configuration will provide multi-factor authentication for human privileged access and support the selected privileged-access model? | Platform owner | Before ALZ-PLT-103 and ALZ-PLT-112 configuration | Open |
-| QST-005 | Question | Which source-control and repeatable deployment mechanism will manage platform configuration? | Platform owner | Before ALZ-PLT-104 configuration | Open |
-| QST-006 | Question | Which application diagnostic categories, retention needs, alert thresholds, and response destinations does the initial application require? | Initial application owner | Before application observability configuration | Open |
-| QST-007 | Question | What recovery objectives, data retention needs, and stateful components apply to the initial application? | Initial application owner | Before ALZ-PLT-108 configuration | Open |
-| QST-008 | Question | What cost allocation, budget, and alert threshold inputs apply to the initial application? | Executive sponsor | Before ALZ-PLT-109 configuration | Open |
-| QST-009 | Question | What connectivity dependencies, data flows, address-space constraints, and public exposure needs apply to the initial application? | Initial application owner | Before ALZ-PLT-110 configuration | Open |
-| QST-010 | Question | Where will controlled platform evidence and acceptance records be retained? | Platform owner | Before evidence acceptance | Open |
+| QST-001 | Question | Martyn Fewtrell is the named executive sponsor who alone may approve the SOR baseline, accept requirement evidence, approve exceptions, and authorize production entry. The answer records the authority identity, not any approval or authorization. | Executive sponsor | Resolved by user-provided input; action-specific records and conditions remain required | Resolved |
+| QST-002 | Question | What are the initial application's test and production resource needs, data characteristics, and applicable obligations? User input confirms these are not yet known and remain deferred to the technical requirements, so this question is only partially answered and remains open here. These inputs must inform design and verification without removing the mandatory dedicated test environment or dedicated production environment requirement. | Initial application owner | Technical requirements dependency; before platform design | Open |
+| QST-003 | Question | Which Azure platform governance boundaries and application resource boundaries are appropriate for the initial application? User input states the application resource boundaries will be managed by the application, which is treated here only as an application-boundary input. The Azure governance boundaries and the impact of that statement on platform design remain unresolved. | Platform owner | Before ALZ-PLT-117 design | Open |
+| QST-004 | Question | Which available capabilities and design approach will provide controlled human privileged access, recovery access, and protection against authorization by compromise of one authentication factor? The intended design input is the technical specification, but that document is not yet written, so this question remains open. | Platform owner | Before ALZ-PLT-119 and ALZ-PLT-120 design | Open |
+| QST-005 | Question | Which controlled configuration definition and deployment approach will manage platform configuration reconciliation? The intended design input is technical documentation to be written, but that documentation is not yet written, so this question remains open. | Platform owner | Before ALZ-PLT-121 design | Open |
+| QST-006 | Question | Which application diagnostic categories, retention needs, configured alert conditions, alert thresholds, response destinations, responders, and documented response actions does the initial application require; and which representative privileged-access change and representative platform-configuration change conditions will be used for ALZ-PLT-107 verification? The intended design inputs are technical documentation to be written, but that documentation is not yet written, so this question remains open. The two representative test conditions do not select or test every configured alert condition. | Initial application owner | Before observability capability design and ALZ-PLT-107 verification | Open |
+| QST-007 | Question | What recovery objectives, data retention needs, and stateful components apply to the initial application? User input supplies a 24-hour recovery objective, but this Draft does not yet know whether that figure is the RTO, the RPO, or another recovery objective, and data-retention needs and stateful components remain unknown. This question is therefore only partially answered and remains open. | Initial application owner | Before ALZ-PLT-108 capability design | Open |
+| QST-008 | Question | What cost allocation, budget, and alert threshold inputs apply to the initial application? User input confirms these inputs are not yet documented, so this question remains open. | Executive sponsor | Before ALZ-PLT-109 capability design | Open |
+| QST-009 | Question | Which connectivity dependencies, exposure needs, and application flows does the initial application owner authorize, including the flows requiring site-to-site or point-to-site VPN access? The intended design input is application documentation to be written, but that documentation is not yet written, so this question remains open. | Initial application owner | Before ALZ-PLT-122, ALZ-PLT-114, and ALZ-PLT-115 design | Open |
+| QST-010 | Question | Which controlled record system, repository, or retained record set will hold the required platform evidence and acceptance records? This Draft explicitly requires those records to be retained but does not prescribe how or where that retention is implemented. | Platform owner | Before evidence acceptance | Open |
+| QST-011 | Question | What home-office network and site-to-site VPN technical inputs and constraints, including applicable address spaces, overlaps, and routes, must be captured for ALZ-PLT-114? Specific inputs remain open, and this Draft does not prescribe how they are supplied or implemented. | Platform owner | Before providing site-to-site VPN capability for ALZ-PLT-114 | Open |
+| QST-012 | Question | What point-to-site VPN technical inputs and constraints must be captured for ALZ-PLT-115? Specific inputs remain open, and this Draft does not prescribe how they are supplied or implemented. | Platform owner | Before providing point-to-site VPN capability for ALZ-PLT-115 | Open |
+| QST-013 | Question | Which verification-only denied test candidate for site-to-site VPN, such as an unauthorized user or device or a flow not authorized for site-to-site VPN, applies to ALZ-PLT-114? User input currently records this as N/A. Before verification, either a denied test candidate and denied-path test must be documented or the reason that a denied test candidate is not applicable to verification must be documented. This input is solely for verification and does not establish a broader security policy. | Initial application owner | Before ALZ-PLT-114 denied-path verification or non-applicability determination | Open |
+| QST-014 | Question | Which verification-only denied test candidate for point-to-site VPN, such as an unauthorized user or device or a flow not authorized for point-to-site VPN, applies to ALZ-PLT-115? User input currently records this as N/A. Before verification, either a denied test candidate and denied-path test must be documented or the reason that a denied test candidate is not applicable to verification must be documented. This input is solely for verification and does not establish a broader security policy. | Initial application owner | Before ALZ-PLT-115 denied-path verification or non-applicability determination | Open |
+| QST-015 | Question | Which container-specific application characteristics are needed to determine the evidence-based applicable or not-applicable disposition for access, deployment and configuration management, observability, recovery, cost, and connectivity in the ALZ-PLT-116 applicability assessment for the one initial application, which is containerized? The intended design inputs are technical documentation not yet written. Environment and resource needs are deferred to the technical requirements through open QST-002; observability by QST-006; recovery by QST-007; cost by QST-008; and connectivity and VPN technical inputs by QST-009, QST-011, and QST-012. This question selects no container hosting solution, Azure service, or resource set. | Initial application owner | Before ALZ-PLT-116 capability assessment and verification | Open |
 | DEC-001 | Decision | This Draft is limited to platform capabilities for one initial application and does not impose corporate compliance procedures or select application/platform design values. | Executive sponsor | Revisit on material scope change | Draft |
+| DEC-002 | Decision | Growth reassessment will record its trigger-selection basis and reassessment action without using a fixed trigger catalogue. | Platform owner | When ALZ-PLT-111 is prepared or reassessed | Draft |
+| DEC-003 | Decision | ALZ-PLT-107 verification will test one representative privileged-access change condition and one representative platform-configuration change condition, not every configured or documented alert condition. | User | When ALZ-PLT-107 verification is planned or reassessed | Draft |
+| DEC-004 | Decision | Both a dedicated test environment and a dedicated production environment are mandatory for the one initial containerized application in scope. | User | Revisit on material scope change | Draft |
 
 ## Traceability
 
@@ -292,48 +356,201 @@ All lifecycle links are **Unverified for Draft**. No entry demonstrates delivery
 
 | SOR ID | Source | Design/delivery link | Verification evidence | Acceptance status |
 | --- | --- | --- | --- | --- |
-| ALZ-PLT-101 | EVD-002, EVD-003 | Unverified; structure decision pending QST-003 | Unverified; structure inspection required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-102 | EVD-002, EVD-003 | Unverified; environment design pending QST-002 | Unverified; isolation test required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-103 | EVD-002, EVD-003 | Unverified; identity design pending QST-004 | Unverified; access and recovery test required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-112 | EVD-002, EVD-003 | Unverified; MFA approach pending QST-004 | Unverified; one-factor test required | Unverified; named executive sponsor required |
-| ALZ-PLT-104 | EVD-002, EVD-003 | Unverified; deployment mechanism pending QST-005 | Unverified; deployment demonstration required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-105 | EVD-002, EVD-003 | Unverified; applicable controls pending QST-002 | Unverified; evaluation demonstration required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-106 | EVD-002, EVD-003 | Unverified; observability inputs pending QST-006 | Unverified; retrieval test required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-107 | EVD-002, EVD-003 | Unverified; alert inputs pending QST-006 | Unverified; alert test required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-108 | EVD-002, EVD-003 | Unverified; recovery inputs pending QST-007 | Unverified; restoration test required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-109 | EVD-002, EVD-003 | Unverified; cost inputs pending QST-008 | Unverified; cost and alert demonstration required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-110 | EVD-002, EVD-003 | Unverified; network inputs pending QST-009 | Unverified; connectivity test required | Unverified; executive-sponsor evidence acceptance required |
-| ALZ-PLT-111 | EVD-002, EVD-003 | Unverified; trigger record required | Unverified; record inspection required | Unverified; executive-sponsor evidence acceptance required |
+| ALZ-PLT-117 | EVD-002, EVD-003, EVD-005, EVD-006 | Unverified; Azure governance-boundary design remains pending QST-003, and the application-managed resource-boundary input does not resolve platform governance boundaries | Unverified; boundary inspection required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-118 | EVD-002, EVD-003, EVD-006, EVD-009 | Unverified; dedicated test and production environment design depends on the still-open technical requirements input deferred in QST-002 | Unverified; separate test-to-production and production-to-test isolation tests required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-119 | EVD-002, EVD-003, EVD-006 | Unverified; privileged-access and recovery design pending QST-004 | Unverified; access and recovery test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-120 | EVD-002, EVD-003, EVD-006 | Unverified; authentication-protection design pending QST-004 | Unverified; one-factor test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-121 | EVD-002, EVD-003, EVD-006 | Unverified; configuration-reconciliation approach pending QST-005 | Unverified; reconciliation demonstration required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-105 | EVD-002, EVD-003, EVD-006 | Unverified; applicable evaluation boundaries depend on the technical requirements input deferred in QST-002 | Unverified; evaluation demonstration required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-106 | EVD-002, EVD-003 | Unverified; observability inputs pending QST-006 | Unverified; retrieval test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-107 | EVD-002, EVD-003, EVD-008 | Unverified; alert inputs and representative test conditions pending QST-006 | Unverified; inspection of records for every configured alert and separate tests of one representative privileged-access change and one representative platform-configuration change required; the tests do not cover every configured alert condition | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-108 | EVD-002, EVD-003 | Unverified; recovery inputs remain partially open in QST-007 because the 24-hour recovery objective is not yet classified and data-retention needs and stateful components remain unknown | Unverified; restoration test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-109 | EVD-002, EVD-003 | Unverified; cost inputs pending QST-008 | Unverified; cost and alert demonstration required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-122 | EVD-002, EVD-003, EVD-006 | Unverified; connectivity inputs pending QST-009 | Unverified; connectivity test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-114 | EVD-004 | Unverified; application-flow authorization pending QST-009, site-to-site technical inputs pending QST-011, and denied-path verification remains conditional on the QST-013 outcome | Unverified; authorized-path site-to-site tests are required, and denied-path testing is required only where a documented verification-only denied test candidate applies; otherwise a documented non-applicability rationale is required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-115 | EVD-004 | Unverified; application authorization pending QST-009, point-to-site technical inputs pending QST-012, and denied-path verification remains conditional on the QST-014 outcome | Unverified; authorized-path point-to-site tests are required, and denied-path testing is required only where a documented verification-only denied test candidate applies; otherwise a documented non-applicability rationale is required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-116 | EVD-005 | Unverified; the one initial application is containerized, but container-specific technical inputs remain pending QST-015; site-to-site VPN dependency applies only where site-to-site VPN connectivity is applicable and point-to-site VPN dependency applies only where point-to-site VPN connectivity is applicable | Unverified; documented applicability assessment with an evidence-based disposition for each named area and consumption evidence for every applicable capability required; applicable VPN evidence required only where the corresponding VPN connectivity is applicable | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-111 | EVD-002, EVD-007 | Unverified; growth reassessment record required | Unverified; inspection of documented trigger-selection basis and reassessment action required | Unverified; Martyn Fewtrell evidence acceptance required |
 
 ### Active Lifecycle Detail
 
-All lifecycle links below are **Unverified for Draft**. QST-001 must be resolved before an acceptance or exception status can change.
+All lifecycle links below are **Unverified for Draft**. QST-001 is resolved as an identity question, but no acceptance or exception status can change without the required action-specific records and conditions. QST-002 remains partially answered and open through the technical-requirements dependency. QST-003 has application-boundary input but does not resolve Azure governance boundaries. QST-010 requires retention of controlled evidence and acceptance records without selecting a repository or implementation. QST-013 and QST-014 currently record N/A user input, but each still requires either a denied-path verification case or a documented non-applicability rationale before verification. Each entry uses an associated compact field/value record so lifecycle fields remain readable in Markdown renderers.
 
-| SOR ID | Source/rationale | Design or work item | Implementation configuration | Deployment record | Verification evidence | Acceptance/exception status |
-| --- | --- | --- | --- | --- | --- | --- |
-| ALZ-PLT-101 | EVD-002, EVD-003 | Structure decision pending QST-003 | Scope configuration required | Unverified | Structure inspection required | Unverified; named sponsor required |
-| ALZ-PLT-102 | EVD-002, EVD-003 | Environment design pending QST-002 | Scope/role configuration required | Unverified | Isolation test required | Unverified; named sponsor required |
-| ALZ-PLT-103 | EVD-002, EVD-003 | Access/recovery design pending QST-004 | Access configuration required | Unverified | Access/recovery test required | Unverified; named sponsor required |
-| ALZ-PLT-104 | EVD-002, EVD-003 | Deployment mechanism pending QST-005 | Inventory and source required | Unverified | Item-level reconciliation required | Unverified; named sponsor required |
-| ALZ-PLT-105 | EVD-002, EVD-003 | Applicable controls pending QST-002 | Control configuration required | Unverified | Evaluation demonstration required | Unverified; named sponsor required |
-| ALZ-PLT-106 | EVD-002, EVD-003 | Observability inputs pending QST-006 | Activity-log and diagnostic configuration required | Unverified | Retrieval test required | Unverified; named sponsor required |
-| ALZ-PLT-107 | EVD-002, EVD-003 | Response destination pending QST-006 | Alert configuration required | Unverified | Alert test required | Unverified; named sponsor required |
-| ALZ-PLT-108 | EVD-002, EVD-003 | Recovery inputs pending QST-007 | Recovery configuration required | Unverified | Restoration test required | Unverified; named sponsor required |
-| ALZ-PLT-109 | EVD-002, EVD-003 | Cost inputs pending QST-008 | Cost/alert configuration required | Unverified | Cost/alert demonstration required | Unverified; named sponsor required |
-| ALZ-PLT-110 | EVD-002, EVD-003 | Network inputs pending QST-009 | Network configuration required | Unverified | Connectivity test required | Unverified; named sponsor required |
-| ALZ-PLT-111 | EVD-002, EVD-003 | Growth triggers required | Growth-trigger record required | Unverified | Record inspection required | Unverified; named sponsor required |
-| ALZ-PLT-112 | EVD-002, EVD-003 | MFA approach pending QST-004 | MFA configuration required | Unverified | One-factor test required | Unverified; named sponsor required |
+#### ALZ-PLT-117
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-005, EVD-006 |
+| Design or work item | Azure governance-boundary design pending QST-003; the application-managed resource-boundary input does not resolve platform governance boundaries |
+| Implementation configuration | Boundary implementation record required |
+| Deployment | Unverified |
+| Verification | Boundary inspection required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-118
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-006, EVD-009 |
+| Design or work item | Dedicated test and production environment design depends on the still-open technical requirements input deferred in QST-002 |
+| Implementation configuration | Dedicated environment and isolation implementation record required |
+| Deployment | Unverified |
+| Verification | Separate test-to-production and production-to-test isolation tests required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-119
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-006 |
+| Design or work item | Privileged-access and recovery design pending QST-004 and the technical specification intended to answer it is not yet written |
+| Implementation configuration | Privileged-access and recovery implementation record required |
+| Deployment | Unverified |
+| Verification | Access/recovery test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-120
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-006 |
+| Design or work item | Authentication-protection design pending QST-004 and the technical specification intended to answer it is not yet written |
+| Implementation configuration | Authentication-protection implementation record required |
+| Deployment | Unverified |
+| Verification | One-factor test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-121
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-006 |
+| Design or work item | Configuration-reconciliation approach pending QST-005 and the intended technical documentation is not yet written |
+| Implementation configuration | Controlled configuration-definition and reconciliation record required |
+| Deployment | Unverified |
+| Verification | Item-level reconciliation required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-105
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-006 |
+| Design or work item | Applicable evaluation boundaries depend on the technical requirements input deferred in QST-002 |
+| Implementation configuration | Evaluation-method record required |
+| Deployment | Unverified |
+| Verification | Evaluation demonstration required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-106
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003 |
+| Design or work item | Observability inputs pending QST-006 and the intended technical documentation is not yet written |
+| Implementation configuration | Control-plane activity and diagnostic collection record required |
+| Deployment | Unverified |
+| Verification | Retrieval test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-107
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-008 |
+| Design or work item | Response destination, responder, documented response action, and representative test conditions pending QST-006 and the intended technical documentation is not yet written |
+| Implementation configuration | Configured-alert record identifying the response destination, responder, and documented response action for every configured alert required |
+| Deployment | Unverified |
+| Verification | Inspect the configured-alert record for every configured alert; separately test one representative privileged-access change and one representative platform-configuration change. The two test records do not cover every configured alert condition. |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-108
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003 |
+| Design or work item | Recovery inputs remain partially open in QST-007 because the 24-hour recovery objective is not yet classified and data-retention needs and stateful components remain unknown |
+| Implementation configuration | Recovery-capability record required |
+| Deployment | Unverified |
+| Verification | Restoration test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-109
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003 |
+| Design or work item | Cost inputs pending QST-008 because they are not yet documented |
+| Implementation configuration | Cost-attribution and spend-alert record required |
+| Deployment | Unverified |
+| Verification | Cost/alert demonstration required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-122
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-003, EVD-006 |
+| Design or work item | Connectivity inputs pending QST-009 and the intended application documentation is not yet written |
+| Implementation configuration | Connectivity implementation record required |
+| Deployment | Unverified |
+| Verification | Connectivity test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-114
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-004 |
+| Design or work item | Application-flow authorization pending QST-009, site-to-site technical inputs pending QST-011, and denied-path verification remains conditional on the QST-013 outcome |
+| Implementation configuration | Site-to-site VPN capability record required |
+| Deployment | Unverified |
+| Verification | Authorized-path site-to-site tests are required. Denied-path testing is required only where a documented verification-only denied test candidate applies; otherwise a documented non-applicability rationale is required. |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-115
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-004 |
+| Design or work item | Application authorization pending QST-009, point-to-site technical inputs pending QST-012, and denied-path verification remains conditional on the QST-014 outcome |
+| Implementation configuration | Point-to-site VPN capability record required |
+| Deployment | Unverified |
+| Verification | Authorized-path point-to-site tests are required. Denied-path testing is required only where a documented verification-only denied test candidate applies; otherwise a documented non-applicability rationale is required. |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-116
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-005 |
+| Design or work item | The one initial application is containerized, but container-specific technical inputs remain pending QST-015; site-to-site VPN dependency applies only where site-to-site VPN connectivity is applicable and point-to-site VPN dependency applies only where point-to-site VPN connectivity is applicable |
+| Implementation configuration | Applicable platform-capability record required |
+| Deployment | Unverified |
+| Verification | Documented applicability assessment with an evidence-based disposition for each named area and consumption evidence for every applicable capability required; applicable VPN evidence required only where the corresponding VPN connectivity is applicable |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
+
+#### ALZ-PLT-111
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-007 |
+| Design or work item | Growth reassessment record required under DEC-002 |
+| Implementation configuration | Growth reassessment record required |
+| Deployment | Unverified |
+| Verification | Inspection of documented trigger-selection basis and reassessment action required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-03 |
 
 ## Legacy Requirement Retirement Register
 
-| Retired ID | Status | Rationale | Replacement ALZ-PLT ID |
+| Retired ID | Status | Rationale | Replacement ALZ-PLT ID(s) |
 | --- | --- | --- | --- |
 | ALZ-SOR-001 | Retired | Discovery profile replaced by application inputs and questions. | No replacement |
 | ALZ-SOR-002 | Retired | Corporate production gate is outside scope. | No replacement |
-| ALZ-SOR-003 | Retired | Governance structure retained. | ALZ-PLT-101 |
-| ALZ-SOR-004 | Retired | IaC reconciliation retained and strengthened. | ALZ-PLT-104 |
-| ALZ-SOR-005 | Retired | Group access retained. | ALZ-PLT-103 |
-| ALZ-SOR-006 | Retired | Emergency recovery retained. | ALZ-PLT-103 |
+| ALZ-SOR-003 | Retired | Governance-boundary outcome retained. | ALZ-PLT-117 |
+| ALZ-SOR-004 | Retired | Configuration-reconciliation outcome retained. | ALZ-PLT-121 |
+| ALZ-SOR-005 | Retired | Controlled privileged-access outcome retained. | ALZ-PLT-119 |
+| ALZ-SOR-006 | Retired | Recovery-access outcome retained. | ALZ-PLT-119 |
 | ALZ-SOR-007 | Retired | Control evaluation retained. | ALZ-PLT-105 |
 | ALZ-SOR-008 | Retired | Corporate exception process is outside scope. | No replacement |
 | ALZ-SOR-009 | Retired | Observability retained. | ALZ-PLT-106 |
@@ -342,35 +559,42 @@ All lifecycle links below are **Unverified for Draft**. QST-001 must be resolved
 | ALZ-SOR-012 | Retired | Restoration retained. | ALZ-PLT-108 |
 | ALZ-SOR-013 | Retired | Cost visibility retained. | ALZ-PLT-109 |
 | ALZ-SOR-014 | Retired | Cost-estimate review is outside scope. | No replacement |
-| ALZ-SOR-015 | Retired | Change integrity represented by IaC reconciliation. | ALZ-PLT-104 |
-| ALZ-SOR-016 | Retired | Network outcome retained. | ALZ-PLT-110 |
-| ALZ-SOR-017 | Retired | Exposure is a network input. | ALZ-PLT-110 |
+| ALZ-SOR-015 | Retired | Change integrity represented by configuration reconciliation. | ALZ-PLT-121 |
+| ALZ-SOR-016 | Retired | Connectivity outcome retained. | ALZ-PLT-122 |
+| ALZ-SOR-017 | Retired | Exposure input retained in connectivity outcome. | ALZ-PLT-122 |
 | ALZ-SOR-018 | Retired | Corporate runbook management is outside scope. | No replacement |
 | ALZ-SOR-019 | Retired | Corporate review cadence is outside scope. | No replacement |
 | ALZ-SOR-020 | Retired | Production authorization remains an acceptance boundary. | No replacement |
-| ALZ-SOR-021 | Retired | Access/recovery retained without periodic review management. | ALZ-PLT-103 |
-| ALZ-SOR-022 | Retired | MFA retained as distinct security requirement. | ALZ-PLT-112 |
+| ALZ-SOR-021 | Retired | Access/recovery retained without periodic review management. | ALZ-PLT-119 |
+| ALZ-SOR-022 | Retired | Authentication-resilience outcome retained as a distinct security requirement. | ALZ-PLT-120 |
 | ALZ-SOR-023 | Retired | Activity logging and diagnostics retained. | ALZ-PLT-106 |
 | ALZ-SOR-024 | Retired | Sponsor naming remains a QST-001 prerequisite. | No replacement |
+| ALZ-PLT-113 | Retired | The combined VPN requirement was non-atomic and had ambiguous shared verification. Its changed intent is not reused. | ALZ-PLT-114; ALZ-PLT-115 |
+| ALZ-PLT-101 | Retired | Its mandate for a particular governance and resource structure materially changed to solution-neutral boundary outcomes. | ALZ-PLT-117 |
+| ALZ-PLT-102 | Retired | Its scope and role-based isolation mechanism materially changed to a solution-neutral isolation outcome. | ALZ-PLT-118 |
+| ALZ-PLT-103 | Retired | Its group-assignment mandate materially changed to controlled privileged access and recovery outcomes. | ALZ-PLT-119 |
+| ALZ-PLT-104 | Retired | Its version-controlled-source mandate materially changed to configuration reconciliation against a controlled definition. | ALZ-PLT-121 |
+| ALZ-PLT-110 | Retired | Its network-pattern and control mandate materially changed to connectivity outcomes. | ALZ-PLT-122 |
+| ALZ-PLT-112 | Retired | Its named authentication-pattern mandate materially changed to authentication-resilience outcome. | ALZ-PLT-120 |
 
 ## Quality Review
 
-Stakeholder review is permitted for this Draft and is intended to resolve QST-001 through QST-010. It does not approve the baseline, accept evidence, approve an exception, or authorize production entry; those actions remain gated by the named executive sponsor and their respective required records and conditions.
+Stakeholder review is permitted for this Draft and is intended to resolve QST-002 through QST-015 and progress the deferred technical-requirements input. QST-001 records Martyn Fewtrell as the named executive sponsor, but this does not approve the baseline, accept evidence, approve an exception, or authorize production entry; those actions remain gated by Martyn Fewtrell and their respective required records and conditions.
 
 | Check | Result | Finding |
 | --- | --- | --- |
-| Draft status and approval authority are recorded | Pass with limitation | Stakeholder review is permitted to resolve QST-001 through QST-010. The executive-sponsor role is recorded, but the individual is unresolved in QST-001; no baseline, evidence acceptance, exception approval, or production-entry authorization may occur until the individual is named and the respective required records and conditions are satisfied. |
-| Decision, audience, scope, time boundary, and evidence are recorded | Pass | EVD-001 through EVD-003 distinguish user input, research evidence, and the material scope refinement. |
+| Draft status and approval authority are recorded | Pass with limitation | Stakeholder review is permitted to resolve QST-002 through QST-015. Martyn Fewtrell is recorded as the named executive sponsor, but no baseline, evidence acceptance, exception approval, or production-entry authorization has occurred; each action still requires its respective records and conditions. |
+| Decision, audience, scope, time boundary, and evidence are recorded | Pass | EVD-001 through EVD-010 distinguish user input, research evidence, the material scope refinement, VPN and containerized-application requirements, solution-neutral drafting, the growth reassessment decision, the representative-alert-verification decision, the mandatory test-and-production environment decision, and the solution-neutral evidence-retention decision. |
 | Facts, recommendations, and unknowns are distinct | Pass | Research recommendations are not adopted as requirements; unknown inputs remain in questions and assumptions. |
-| Assumptions, risks, issues, questions, and decisions are separate and owned | Pass with limitation | Platform and application owners are not yet named. |
-| Mandatory requirements have complete metadata | Pass | ALZ-PLT-101 through ALZ-PLT-112 have unique IDs, owner, priority, status, source/rationale, dependency, verification, pass criterion, evidence, and acceptance authority. |
-| Requirements are atomic, outcome-oriented, and verifiable | Pass | MFA is distinct; privileged access is objectively group-based with recovery; IaC requires item-level reconciliation; observability has a minimum platform baseline. |
-| Prescription is evidence-backed or avoided | Pass | Azure is user-supplied scope; specific regions, services, architectures, configurations, and products remain design inputs. |
-| Scope coverage is addressed or explicitly not applicable | Pass | Structure, isolation, access, configuration, controls, observability, alerting, recovery, cost, connectivity, evolution, and acceptance are covered; corporate processes are expressly out of scope. |
-| Material traceability is complete | Pass with limitation | Summary and active lifecycle detail separate source, design/work, implementation, deployment, verification, and acceptance/exception status; every legacy ALZ-SOR ID is visibly retired. Delivery, verification, and acceptance evidence remain unverified for Draft. |
-| Markdown rendering and field association | Pass | Requirement metadata uses individual two-column tables; other tables have matched delimiter columns and no fenced code blocks. |
+| Assumptions, risks, issues, questions, and decisions are separate and owned | Pass with limitation | Independent-review ownership defect corrected across v0.9, v1.7, and v1.9: RSK-001 is limited to platform-owner technical-input gaps, RSK-004 is limited to initial-application-owner authorization and verification-input gaps, QST-011 through QST-015 have one accountable owner each, DEC-004 ownership was corrected in v1.7, and DEC-003 ownership was corrected in v1.9. QST-002 remains a partially answered technical-requirements dependency, QST-003 remains ambiguous at the Azure-governance-boundary level, QST-013 and QST-014 require documented non-applicability rationale if they remain N/A, and platform and application owners are not yet named. |
+| Mandatory requirements have complete metadata | Pass | Active ALZ-PLT-105 through ALZ-PLT-109 and ALZ-PLT-114 through ALZ-PLT-122 have unique IDs, owner, priority, status, source/rationale, dependency, verification, pass criterion, evidence, and acceptance authority; retired IDs remain in the retirement register. |
+| Requirements are atomic, outcome-oriented, and verifiable | Corrected; unverified | v1.2 retires and replaces the materially changed prescriptive intents for governance boundaries, environment isolation, privileged access, configuration reconciliation, connectivity, and authentication protection. ALZ-PLT-105 now states configuration-evaluation outcomes. v1.3 makes ALZ-PLT-116 a documented, evidence-based applicability assessment with applicable or not-applicable dispositions and consumption evidence for each applicable capability, without prescribing an evidence format. ALZ-PLT-111 objectively requires a documented trigger-selection basis and reassessment action without a fixed trigger catalogue. v1.5 requires each configured ALZ-PLT-107 alert to identify its response destination, responder, and documented response action; inspection covers every configured alert record, while separate test records cover only one representative privileged-access change and one representative platform-configuration change. v1.6 makes dedicated test and production environments mandatory and requires separate isolation tests in both directions. v1.7 clarifies that verification uses the dedicated test environment and that unresolved application inputs cannot remove the mandatory environment requirement. v2.1 makes ALZ-PLT-114 and ALZ-PLT-115 denied-path verification conditional on applicability or documented non-applicability rather than unconditionally mandatory. All inputs and verification evidence remain open and unverified for Draft. |
+| Prescription is evidence-backed or avoided | Pass | EVD-006 governs solution-neutral drafting. Azure, the one initial containerized application, and both VPN types are direct user-provided scope; specific governance arrangements, access-assignment models, Azure services, control mechanisms, configuration-management methods, network patterns, authentication mechanisms, architectures, products, container hosting solutions, runtimes, and resource sets remain design inputs. |
+| Scope coverage is addressed or explicitly not applicable | Pass | Structure, dedicated test and production environment isolation, access, configuration, controls, observability, alerting, recovery, cost, general connectivity, site-to-site and point-to-site VPN support, containerized-application capability consumption, evolution, and acceptance are covered; corporate processes are expressly out of scope. |
+| Material traceability is complete | Pass with limitation | Summary and active lifecycle detail separate source, design/work, implementation configuration, deployment, verification, acceptance/exception status, and active-lifecycle review date; QST-002's technical-requirements deferral, QST-003's Azure-governance-boundary ambiguity, QST-010's solution-neutral retention requirement, and the conditional denied-path verification state for QST-013 and QST-014 are visible in affected links; every legacy ALZ-SOR ID, ALZ-PLT-113, and the six v1.2 replacement IDs is visibly retired. Delivery, verification, and acceptance evidence remain unverified for Draft. |
+| Markdown rendering and field association | Pass | Requirement metadata and active lifecycle detail use individual two-column field/value tables. Other active tables have matched delimiter columns and no fenced code blocks; historical commented content was not modified. |
 
-**Unverified at stakeholder review:** QST-001 through QST-010; named platform and initial application owners; all platform configuration, verification evidence, acceptance records, and lifecycle delivery links. Stakeholder review is permitted and is intended to resolve QST-001 through QST-010. These remain open Draft items, not approvals or accepted risks; the named executive sponsor and the respective evidence, exception, baseline, and production-entry conditions remain required for those actions.
+**Unverified at stakeholder review:** QST-002 through QST-015; named platform and initial application owners; all platform-capability evidence, verification evidence, acceptance records, and lifecycle delivery links. QST-001 is resolved as the identity question only. QST-002 and QST-007 are only partially answered, QST-003 remains ambiguous at the Azure-governance-boundary level, QST-010 leaves the retention implementation open, and QST-013 and QST-014 require documented non-applicability rationale if they remain N/A. Stakeholder review is permitted and is intended to resolve the remaining questions, including the QST-002 technical-requirements dependency. These remain open Draft items, not approvals or accepted risks; Martyn Fewtrell and the respective evidence, exception, baseline, and production-entry conditions remain required for those actions.
 
 ## Approval and Change History
 
@@ -382,6 +606,21 @@ Stakeholder review is permitted for this Draft and is intended to resolve QST-00
 | 0.4 | 2026-08-03 | Material scope refinement: replaced corporate compliance and management-process requirements with eleven new `ALZ-PLT` platform capability requirements for one initial application; retired prior `ALZ-SOR` IDs rather than reusing changed intent; moved corporate processes to boundaries and design inputs. | GitHub Copilot | Not approved | Draft |
 | 0.5 | 2026-08-03 | Independent-review corrections: named-sponsor approval boundary; MFA; activity logging and privileged/platform-change alerts; item-level IaC reconciliation; verifiable group-based access; visible retirement and lifecycle traceability registers. | GitHub Copilot | Not approved | Draft |
 | 0.6 | 2026-08-03 | Draft correction: clarified that stakeholder review is permitted to resolve QST-001 through QST-010 while preserving named-sponsor and action-specific gates; added ALZ-PLT-112 to summary traceability. | GitHub Copilot | Not approved | Draft |
+| 0.7 | 2026-08-03 | Material Draft update: recorded the user-provided requirement for site-to-site and point-to-site VPN support; added ALZ-PLT-113 with verification evidence; added focused VPN input questions and updated risk, traceability, and quality review. | GitHub Copilot | Not approved | Draft |
+| 0.8 | 2026-08-03 | Independent-review corrections and user ownership decision: retired non-atomic ALZ-PLT-113; added separately verifiable ALZ-PLT-114 site-to-site VPN connectivity and ALZ-PLT-115 point-to-site VPN access; made EVD-004 the primary direct VPN source; recorded platform-owner technical-input and initial-application-owner authorization accountabilities; updated questions, risk, traceability, lifecycle review dates, and quality review. | GitHub Copilot | Not approved | Draft |
+| 0.9 | 2026-08-03 | Independent-review corrections: separated platform-owner VPN technical inputs from initial-application-owner authorization inputs; split technical and authorization/flow risks; added verification-only denied test-candidate questions for each VPN type without establishing security policy; updated VPN requirement dependencies, evidence, traceability, and quality-review limitations. | GitHub Copilot | Not approved | Draft |
+| 1.0 | 2026-08-03 | Material Draft update: recorded user-provided containerized-application support input; added solution-neutral ALZ-PLT-116 and the focused QST-015 input question; updated scope, boundaries, both traceability tables, and quality review without selecting a container hosting solution, Azure service, or resource set. | GitHub Copilot | Not approved | Draft |
+| 1.1 | 2026-08-03 | Independent-review corrections: made ALZ-PLT-116 verification a complete, evidence-based capability applicability matrix with consumption demonstration for every applicable entry; made ALZ-PLT-114 and ALZ-PLT-115 conditional dependencies only where their respective VPN connectivity is applicable; narrowed QST-015 to container-specific inputs and updated required evidence, traceability, and quality review without selecting a container hosting solution, Azure service, or resource set. | GitHub Copilot | Not approved | Draft |
+| 1.2 | 2026-08-03 | Material Draft revision applying the user-provided solution-neutral drafting decision across the active SOR. Retired and replaced ALZ-PLT-101 through ALZ-PLT-104, ALZ-PLT-110, and ALZ-PLT-112 with ALZ-PLT-117 through ALZ-PLT-122; revised ALZ-PLT-105 without changing its normative intent; updated evidence, dependencies, uncertainty registers, traceability, lifecycle detail, retirement links, and quality review. No alternative implementation was selected. | GitHub Copilot | Not approved | Draft |
+| 1.3 | 2026-08-03 | Independent-review corrections and user-provided growth reassessment decision: revised ALZ-PLT-116 to a solution-neutral documented applicability assessment and evidence record; revised ALZ-PLT-111 to require a documented trigger-selection basis and reassessment action without a fixed trigger catalogue; added EVD-007 and DEC-002; aligned RSK-002 with QST-004 through QST-008; and reformatted active lifecycle detail as compact field/value blocks. No baseline, evidence, exception, or production-entry approval was made. | GitHub Copilot | Not approved | Draft |
+| 1.4 | 2026-08-03 | Independent-review correction: made ALZ-PLT-107's actionable-alert outcome measurable by requiring each alert to identify a response destination, responder, and documented response action; aligned QST-006, required evidence, traceability, active lifecycle detail, and quality review. No alerting service, management process, or response mechanism was selected; all lifecycle links remain unverified and no approval was made. | GitHub Copilot | Not approved | Draft |
+| 1.5 | 2026-08-03 | User-provided decision and independent-review corrections: removed the undefined actionable qualifier from ALZ-PLT-107; retained complete configured-alert records for response destination, responder, and documented response action; and set verification to inspection of every configured-alert record plus separate tests of one representative privileged-access change and one representative platform-configuration change, not every configured or documented alert condition. Added EVD-008 and DEC-003 and aligned QST-006, traceability, active lifecycle detail, and quality review. No alerting service, process, or mechanism was selected; all lifecycle links remain unverified and no approval was made. | GitHub Copilot | Not approved | Draft |
+| 1.6 | 2026-08-03 | User-provided scope decision: made a dedicated test environment and a dedicated production environment mandatory for the one initial application; aligned scope, ALZ-PLT-118, verification evidence, questions, assumptions, traceability, lifecycle detail, and quality review. No Azure service, topology, isolation mechanism, implementation, baseline approval, or production-entry decision was selected or made. | GitHub Copilot | Not approved | Draft |
+| 1.7 | 2026-08-03 | Accepted independent-review corrections: clarified mandatory use of the dedicated test environment, preserved the conditional use of representative non-sensitive test data, clarified ASM-003's impact boundary, and recorded User ownership for the user-provided DEC-004 decision. No baseline or production-entry approval was made. | GitHub Copilot | Not approved | Draft |
+| 1.8 | 2026-08-03 | Independent-review wording correction: clarified that any production verification is supplementary and cannot replace verification in the mandatory dedicated test environment. | GitHub Copilot | Not approved | Draft |
+| 1.9 | 2026-08-03 | User-provided clarification: recorded User ownership for DEC-003. | GitHub Copilot | Not approved | Draft |
+| 2.0 | 2026-08-03 | Independent-review correction: corrected the Quality Review wording to identify DEC-004 ownership correction in v1.7 and DEC-003 ownership correction in v1.9. | GitHub Copilot | Not approved | Draft |
+| 2.1 | 2026-08-03 | User-provided updates: confirmed Martyn Fewtrell as the named executive sponsor while preserving the role boundary and no-approval status; clarified that the one initial application in scope is the containerized application and no second application is in scope; recorded partial or still-open answers for QST-002 through QST-009 and QST-015; made evidence retention explicit but solution-neutral through QST-010 and verification/acceptance wording; made QST-011 and QST-012 capture-focused and solution-neutral; and made ALZ-PLT-114 and ALZ-PLT-115 denied-path verification conditional on applicability or documented non-applicability for QST-013 and QST-014. | GitHub Copilot | Not approved | Draft |
 
 <!-- Retired 0.3 content retained only to preserve file-provider history; it is not part of the 0.4 Draft.
 # Azure Landing Zone for Material Workloads - Statement of Requirements
