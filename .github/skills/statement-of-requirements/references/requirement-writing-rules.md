@@ -7,6 +7,6 @@
 5. Use clear, plain English. Prefer short sentences, active voice, and common words. Avoid jargon, buzzwords, corporate or legal language, and unnecessary technical terms. Simplify any sentence that can be simpler without losing meaning.
 6. State what is required and, where helpful, why. Write for business stakeholders, technical teams, and suppliers. Keep the wording precise and technically accurate.
 7. Avoid undefined qualifiers such as easy, fast, robust, as appropriate, and industry standard.
-8. Assign a stable ID and do not silently reuse it for a changed intent.
+8. Assign a stable ID using `FR`, `NF`, `SR`, `DR`, `IR`, `TR`, or `OR` for functional, non-functional, security, data, interface, testing, or operational requirements respectively. Do not silently reuse an ID for a changed intent.
 9. Link each requirement to source or rationale, owner, priority, status, dependency, verification method, pass criterion, evidence, and acceptance authority.
 10. Keep uncertainties, implementation decisions, design options, and technical solution information outside the SOR requirement baseline, even when they are evidence-backed or approved elsewhere.
