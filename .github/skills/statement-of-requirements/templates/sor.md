@@ -45,6 +45,8 @@
 
 Use the [requirement register](./requirement-register.md). Summarize approved or proposed groups here:
 
+> Writing standard: Use clear, plain English. Use short sentences, active voice, and common words. Avoid jargon, buzzwords, corporate or legal language, and unnecessary technical terms. State the required outcome and explain why only when it helps understanding.
+
 - Functional user requirements
 - Non-functional requirements
 - Security, privacy, compliance, and assurance requirements

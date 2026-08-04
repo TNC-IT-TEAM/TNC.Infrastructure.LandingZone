@@ -13,6 +13,7 @@ Mark each failed or unverified check as a finding. Passing this checklist means 
 
 - [ ] Every mandatory requirement has a unique stable ID, owner, priority, status, source or rationale, and dependency.
 - [ ] Each requirement is atomic, normative, outcome-oriented, and free of vague qualifiers.
+- [ ] The SOR uses clear, plain English: short sentences, active voice, and common words. It avoids jargon, buzzwords, corporate or legal language, and unnecessary technical terms. Each requirement is understandable on the first reading by business stakeholders, technical teams, and suppliers without losing precision or technical accuracy.
 - [ ] The SOR contains functional and non-functional user requirements only; no products, platforms, architectures, designs, configurations, technical mechanisms, or delivery methods appear in its requirements, scope, evidence, or supporting registers.
 - [ ] Each requirement has a feasible verification method, objective pass criterion where relevant, required evidence, and acceptance authority.
 - [ ] The entire document renders as valid, readable Markdown. Check heading hierarchy, lists, tables and their delimiter columns, fenced code blocks, links, and field associations. Do not use a wide requirement table where metadata columns wrap, truncate, or misalign; use per-requirement headings with compact field/value metadata where needed.
