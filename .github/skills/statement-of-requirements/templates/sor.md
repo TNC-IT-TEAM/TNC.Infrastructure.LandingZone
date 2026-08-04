@@ -6,6 +6,8 @@
 > Baseline authority: [name or role]
 > Approval status: Not approved
 
+> Content boundary: Record functional and non-functional user requirements only. Do not include technical solution information, such as products, platforms, architecture, design, configuration, mechanisms, or delivery methods.
+
 ## Purpose and Decision
 
 - Problem or opportunity: [evidence-backed statement]
@@ -18,7 +20,7 @@
 ## Scope and Boundaries
 
 - In scope: [capabilities, users, environments, integrations]
-- Out of scope: [explicit exclusions]
+- Out of scope: [explicit exclusions, including technical solution information]
 - Lifecycle stage and delivery context: [discovery, delivery, operations, procurement]
 
 ## Stakeholders and Governance
@@ -43,7 +45,7 @@
 
 Use the [requirement register](./requirement-register.md). Summarize approved or proposed groups here:
 
-- Functional and outcome requirements
+- Functional user requirements
 - Non-functional requirements
 - Security, privacy, compliance, and assurance requirements
 - Interfaces and dependencies

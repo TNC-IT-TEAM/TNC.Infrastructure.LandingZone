@@ -1,3 +1,4 @@
+<!-- Historical Draft version 2.1 retained for traceability; superseded by active Draft version 3.0 below.
 # Azure Landing Zone Platform for One Initial Application - Statement of Requirements
 
 > Status: Draft
@@ -622,7 +623,7 @@ Stakeholder review is permitted for this Draft and is intended to resolve QST-00
 | 2.0 | 2026-08-03 | Independent-review correction: corrected the Quality Review wording to identify DEC-004 ownership correction in v1.7 and DEC-003 ownership correction in v1.9. | GitHub Copilot | Not approved | Draft |
 | 2.1 | 2026-08-03 | User-provided updates: confirmed Martyn Fewtrell as the named executive sponsor while preserving the role boundary and no-approval status; clarified that the one initial application in scope is the containerized application and no second application is in scope; recorded partial or still-open answers for QST-002 through QST-009 and QST-015; made evidence retention explicit but solution-neutral through QST-010 and verification/acceptance wording; made QST-011 and QST-012 capture-focused and solution-neutral; and made ALZ-PLT-114 and ALZ-PLT-115 denied-path verification conditional on applicability or documented non-applicability for QST-013 and QST-014. | GitHub Copilot | Not approved | Draft |
 
-<!-- Retired 0.3 content retained only to preserve file-provider history; it is not part of the 0.4 Draft.
+Retired 0.3 content retained only to preserve file-provider history; it is not part of the 0.4 Draft.
 # Azure Landing Zone for Material Workloads - Statement of Requirements
 
 > Status: Draft
@@ -1160,3 +1161,372 @@ All lifecycle links below are **Unverified for Draft**. They are required before
 | 0.2 | 2026-08-03 | Draft correction: executive-sponsor acceptance and production-entry authority recorded; access/logging obligations split; authentication assurance and named-role gates added; testability and traceability corrected using EVD-004 | GitHub Copilot | Not approved | Draft |
 | 0.3 | 2026-08-03 | Draft correction resolving the second independent review: ALZ-SOR-004 now requires complete inventory and item-level reconciliation to source and deployed state; ALZ-SOR-022 now prevents authorization from compromise of one authentication factor alone and correctly retains QST-007 for Entra licensing and configuration. | GitHub Copilot | Not approved | Draft |
 -->
+
+# Shared Foundation and Shared Resources - Statement of Requirements
+
+> Status: Draft
+> Version: 3.3
+> Date: 2026-08-04
+> Baseline, evidence, exception, and production-entry authority: Martyn Fewtrell (executive sponsor); no approval or authorization has been recorded
+> Approval status: Not approved
+
+## Purpose and Decision
+
+- **Problem or opportunity:** The business requires a controlled shared foundation and shared resources for future use without establishing a Platform Engineering function or assuming application responsibilities.
+- **Intended outcome:** A controlled, operable shared foundation that supports future shared use, maintains clear responsibility boundaries, and has controlled definition and management.
+- **Decision supported:** Whether this Draft accurately defines the required shared-foundation outcomes and boundaries for stakeholder review.
+- **Success measures:** Shared-foundation requirements have objective evidence; application onboarding, deployment, and cost management remain application responsibilities; shared-resource scope remains unresolved rather than assumed.
+- **Audience:** Executive sponsor; prospective shared-foundation owner; current and future application owners; delivery team or service provider.
+- **Scope and time boundary:** This Draft covers a shared foundation and shared resources intended for future shared use. It reflects evidence available on 2026-08-04 and does not approve a technical design, implementation, baseline, exception, or production entry.
+
+## Scope and Boundaries
+
+**In scope:** Shared-foundation responsibility boundaries; controlled human privileged access and authentication resilience; controlled definition and management; activity visibility and alerting; reassessment for future shared use; and shared resources for authorized shared use once their scope and responsibilities are documented.
+
+**Out of scope:** Platform Engineering; application onboarding, deployment, cost management, architecture, operation, recovery, and application-specific connectivity; and selection of shared-resource types, users, identities, catalogue, architecture, configurations, delivery methods, management mechanisms, delivery plans, regions, budgets, licences, providers, topology, or implementation.
+
+**Boundary:** The shared foundation provides shared outcomes and shared resources only within their documented scope and responsibilities. Each application remains responsible for its onboarding, deployment, and cost management. The shared-resource scope must not be inferred from this Draft.
+
+## Stakeholders and Governance
+
+| Role | Named person or team | Accountability | Approval or escalation authority |
+| --- | --- | --- | --- |
+| Executive sponsor | Martyn Fewtrell | May authorize each shared resource's intended users, approve the SOR baseline, accept requirement evidence, approve exceptions, and authorize production entry only through required records and conditions. | Only Martyn Fewtrell may perform those actions. |
+| Shared-foundation owner | To be named | Delivers and manages shared-foundation outcomes, maintains evidence, and escalates unresolved shared-resource scope. | Escalates scope gaps and unresolved dependencies to the executive sponsor. |
+| Application owner | To be named for each application | Owns application onboarding, deployment, cost management, and application-specific requirements. | Escalates a need that may require a shared-foundation scope change. |
+
+## Evidence Inventory
+
+| ID | Source | Date/version | Claim supported | Evidence status |
+| --- | --- | --- | --- | --- |
+| EVD-001 | User-provided input | 2026-08-03 | A foundation is required and Martyn Fewtrell is the named executive sponsor and approval authority by role. | User-provided; sponsor authority remains active |
+| EVD-002 | [Small Business Foundation Guidance](../research/azure-landing-zone-small-business-guidance.md) | Research date 2026-08-03 | Nonbinding research guidance on foundation capabilities, dependencies, and growth triggers. | Research evidence; observations and recommendations are distinct |
+| EVD-003 | User-provided scope refinement | 2026-08-03 | Previous focus on one initial application. | User-provided; superseded for active scope by EVD-011 |
+| EVD-004 | User-provided connectivity and ownership input | 2026-08-03 | Previous application-specific VPN input. | User-provided; superseded for active scope by EVD-011 |
+| EVD-005 | User-provided containerized application clarification | 2026-08-03 | Previous one-initial-containerized-application scope. | User-provided; superseded for active scope by EVD-011 |
+| EVD-006 | User-provided drafting decision | 2026-08-03 | Requirements must be outcome-oriented and solution-neutral. | User-provided; active |
+| EVD-007 | User-provided growth reassessment decision | 2026-08-03 | Growth reassessment requires a documented trigger-selection basis and reassessment action. | User-provided; active |
+| EVD-008 | User-provided alert-verification decision | 2026-08-03 | Representative privileged-access and foundation-change alert verification. | User-provided; active with scope revised by EVD-011 |
+| EVD-009 | User-provided scope decision | 2026-08-03 | Previous dedicated application test and production environment scope. | User-provided; superseded for active scope by EVD-011 |
+| EVD-010 | User-provided evidence-retention decision | 2026-08-03 | Controlled foundation evidence and acceptance records must be retained without prescribing retention implementation. | User-provided; active |
+| EVD-011 | User-provided material scope change | 2026-08-04 | A shared foundation and shared resources are required for future shared use; this is not Platform Engineering; application onboarding, deployment, and cost management remain application responsibilities. | User-provided; primary direct source for the active scope |
+| EVD-012 | User-provided decision | 2026-08-04 | Option 1 selected: shared resources are required for authorized shared use after their scope and responsibilities are documented. | User-provided; primary direct source for ALZ-PLT-126 |
+| EVD-013 | User-provided final-review decision | 2026-08-04 | The executive sponsor authorizes each shared resource's intended users; the scope-and-responsibility record identifies those users, authorization basis/evidence is retained, and verification demonstrates shared use only for users so authorized. | User-provided; primary direct source for ALZ-PLT-126 authorization and verification revision |
+
+Research recommendations and superseded historical inputs are not active requirements or approvals. The direct user-provided technical direction is retained solely as external technical-design dependency TD-001; it is not selected or prescribed by this SOR.
+
+## External Technical-Design Dependencies
+
+| ID | Supplied technical-design information | Owner | Required disposition | Status |
+| --- | --- | --- | --- | --- |
+| TD-001 | User-provided technical-design input names Azure, Landing Zone, infrastructure-as-code, and centrally hosted shared resources as the intended technical direction. | Executive sponsor | Record any technical-design decision outside this SOR and confirm it supports, rather than changes, the active outcome requirements. | Open; not an SOR requirement or approval |
+
+## Requirement Baseline
+
+All entries are mandatory Draft requirements. Dependencies are open questions or linked requirements, not approvals. Martyn Fewtrell is the named executive sponsor and acceptance authority by role; this Draft records no approval or authorization.
+
+### ALZ-PLT-127
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall provide controlled human privileged access and an independently usable recovery access path that can restore authorized administration when normal privileged access is unavailable. |
+| Type | Identity and access |
+| Source or rationale | EVD-002, EVD-006, EVD-011 |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; replacement for materially changed ALZ-PLT-119 |
+| Dependency | QST-004 |
+| Verification method | Inspection and test |
+| Objective pass criterion | The privileged-access inventory identifies each human administrator, authorization basis, and purpose; a controlled test restores authorized administration without normal privileged access. |
+| Required evidence | Privileged-access inventory, recovery-access record, and recovery test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-128
+| Field | Value |
+| --- | --- |
+| Normative requirement | Before human privileged access is used for shared-foundation administration, the shared foundation shall protect that access such that compromise of one authentication factor alone cannot authorize it. |
+| Type | Identity security |
+| Source or rationale | EVD-002, EVD-006, EVD-011 |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; replacement for materially changed ALZ-PLT-120 |
+| Dependency | QST-004 |
+| Verification method | Inspection and test |
+| Objective pass criterion | Test evidence demonstrates that compromise of one authentication factor alone does not authorize shared-foundation administration. |
+| Required evidence | Privileged-access record, authentication-protection evidence, and authentication-factor test record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-125
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall maintain controlled records for each applicable shared-foundation responsibility that reconcile its agreed intended state and observed state before it supports production use. |
+| Type | Controlled definition and management |
+| Source or rationale | EVD-006, EVD-011; retains the solution-neutral outcome needed for controlled definition and management without selecting a technical delivery method. |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; new ID replacing the materially changed ALZ-PLT-121 outcome |
+| Dependency | QST-005, TD-001 |
+| Verification method | Inspection and demonstration |
+| Objective pass criterion | The controlled record identifies every applicable shared-foundation responsibility; each record links its agreed intended state and observed state; reconciliation records identify mismatches and disposition; and a representative update demonstrates that the record can be maintained. |
+| Required evidence | Controlled responsibility records, observed-state records, reconciliation records, and representative update demonstration record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-129
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall provide alerts for privileged-access and shared-foundation changes, and each configured alert shall identify a response destination, responder, and documented response action. |
+| Type | Alerting |
+| Source or rationale | EVD-002, EVD-008, EVD-011 |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; replacement for materially changed ALZ-PLT-107 |
+| Dependency | ALZ-PLT-124, QST-006 |
+| Verification method | Test and inspection |
+| Objective pass criterion | The configured-alert record identifies the response destination, responder, and documented response action for every configured alert. Separate tests show one representative privileged-access change and one representative shared-foundation change each produce an alert at its identified destination. |
+| Required evidence | Configured-alert record and two representative alert test records |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-130
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall maintain a documented growth reassessment record that states the trigger-selection basis and reassessment action for future shared use. |
+| Type | Evolution |
+| Source or rationale | EVD-002, EVD-007, EVD-011 |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; replacement for materially changed ALZ-PLT-111 |
+| Dependency | QST-016 |
+| Verification method | Inspection |
+| Objective pass criterion | The growth reassessment record states the basis used to select its triggers and the reassessment action for each trigger, without specifying a future implementation. |
+| Required evidence | Growth reassessment record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-123
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall maintain documented boundaries that distinguish shared-foundation responsibilities, shared-resource responsibilities, and application responsibilities. |
+| Type | Responsibility boundaries |
+| Source or rationale | EVD-006, EVD-011 |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; new ID because the prior initial-application placement intent materially changed |
+| Dependency | QST-016 |
+| Verification method | Inspection |
+| Objective pass criterion | The boundary record identifies the shared-foundation responsibility, documented shared-resource responsibility for each defined shared resource, and application responsibility; it assigns application onboarding, deployment, and cost management to applications. |
+| Required evidence | Responsibility-boundary record and shared-resource scope record |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-124
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall collect and make retrievable its activity information required to investigate shared-foundation changes and privileged-access events. |
+| Type | Observability |
+| Source or rationale | EVD-002, EVD-006, EVD-011 |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; new ID because the prior application-diagnostic intent materially changed |
+| Dependency | QST-006 |
+| Verification method | Demonstration |
+| Objective pass criterion | A representative shared-foundation activity and a representative privileged-access event are retrievable by an authorized shared-foundation operator. |
+| Required evidence | Shared-foundation activity-information record and retrieval test records |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+### ALZ-PLT-126
+| Field | Value |
+| --- | --- |
+| Normative requirement | The shared foundation shall provide each defined shared resource only for use by intended users identified in that resource's documented scope-and-responsibility record and authorized by the executive sponsor. |
+| Type | Shared-resource provision |
+| Source or rationale | EVD-012, EVD-013; user-provided option 1 and final-review decisions. |
+| Priority | Must |
+| Owner | Shared-foundation owner |
+| Status | Draft; new ID |
+| Dependency | ALZ-PLT-123, QST-016 |
+| Verification method | Inspection and demonstration |
+| Objective pass criterion | For every defined shared resource, the scope-and-responsibility record exists before provision and identifies its intended users; the executive sponsor's authorization basis or evidence for those intended users is retained; and shared-use verification demonstrates use only by intended users covered by that retained authorization basis or evidence. |
+| Required evidence | Defined shared-resource scope-and-responsibility record identifying intended users, retained executive-sponsor authorization basis or evidence, and shared-use verification record for each defined resource |
+| Acceptance authority | Martyn Fewtrell (executive sponsor) |
+
+## Verification and Acceptance
+
+- **Verification conditions:** Verification shall use controlled, representative conditions appropriate to the requirement. No application onboarding, deployment, cost-management, or application-specific verification is required by this Draft.
+- **Evidence retention:** Controlled shared-foundation evidence and acceptance records shall be retained. This Draft does not select the retention implementation; QST-010 remains open.
+- **Acceptance approach:** The shared-foundation owner assembles requirement evidence. The executive sponsor's authorization of intended users for a shared resource is distinct from acceptance of requirement evidence. Only Martyn Fewtrell may authorize intended users, approve the SOR baseline, accept evidence, approve an exception, or authorize production entry; each action requires its respective records and conditions. This Draft records none of those actions.
+
+## Assumptions
+
+| ID | Statement | Owner | Impact if false | Review trigger | Status |
+| --- | --- | --- | --- | --- | --- |
+| ASM-004 | Shared resources will be used across future applications, but their types, users, catalogue, identities, delivery plan, and applicable obligations are not yet defined. | Executive sponsor | Scope, responsibilities, evidence, and affected requirements may require revision; no resource type or obligation may be assumed. | A shared-resource scope, user group, catalogue, identity, delivery plan, or obligation is proposed or recorded | Open |
+
+## Risks
+
+| ID | Risk | Owner | Impact | Treatment or review trigger | Status |
+| --- | --- | --- | --- | --- | --- |
+| RSK-002 | Unknown capabilities, constraints, or unresolved shared-foundation and shared-resource boundaries could constrain required outcomes. | Shared-foundation owner | Rework, ambiguity, or unavailable capability. | Resolve QST-004 through QST-006 and QST-016 before affected technical-design work. | Open |
+| RSK-003 | Future shared use could exceed the initial shared-foundation scope or operational model. | Shared-foundation owner | Cost, security, or operability degradation. | Evaluate ALZ-PLT-130 when a documented trigger occurs. | Open |
+| RSK-005 | An undefined shared-resource scope, intended-user authorization, or applicable obligation could cause application responsibilities to be incorrectly transferred to the shared foundation, use beyond authorized users, or an obligation to be left unaddressed. | Executive sponsor | Scope creep, unclear accountability, use beyond authorized users, unverified outcomes, or unmet applicable obligations. | Resolve QST-016 before providing a shared resource or accepting evidence for ALZ-PLT-123 or ALZ-PLT-126. | Open |
+
+## Issues, Questions, and Decisions
+
+| ID | Type | Statement | Owner | Due date or trigger | Status |
+| --- | --- | --- | --- | --- | --- |
+| QST-001 | Question | Martyn Fewtrell is the named executive sponsor who alone may approve the SOR baseline, accept requirement evidence, approve exceptions, and authorize production entry. This records authority identity only, not an approval or authorization. | Executive sponsor | Resolved by user-provided input; action-specific records and conditions remain required | Resolved |
+| QST-004 | Question | What technical-design input will establish controlled human privileged access, recovery access, and protection against authorization by compromise of one authentication factor? | Shared-foundation owner | Before ALZ-PLT-127 and ALZ-PLT-128 technical-design work | Open |
+| QST-005 | Question | What external technical-design approach will support the controlled records and reconciliation required by ALZ-PLT-125? It is not selected by this Draft. | Shared-foundation owner | Before ALZ-PLT-125 technical-design work | Open |
+| QST-006 | Question | Which shared-foundation activity categories, configured alert conditions, response destinations, responders, response actions, and representative verification conditions apply? This is a technical-design dependency and does not include application diagnostics. | Shared-foundation owner | Before ALZ-PLT-129 and ALZ-PLT-124 technical-design work | Open |
+| QST-010 | Question | Which controlled record system, repository, or retained record set will hold required shared-foundation evidence and acceptance records? This Draft does not prescribe the retention implementation. | Shared-foundation owner | Before evidence acceptance | Open |
+| QST-016 | Question | For each defined shared resource, what scope and responsibility boundaries apply; which intended users are in scope; what executive-sponsor authorization basis or evidence is retained for those users; and which applicable quality, security/privacy, operational-support, recovery/lifecycle, interface, evidence, and acceptance obligations apply? Resource types, users, identities, a catalogue, delivery plan, authorization mechanism or timing, obligation values, and policies must not be inferred before an answer is recorded. | Executive sponsor | Before providing a shared resource or accepting evidence for ALZ-PLT-123 or ALZ-PLT-126; review on any proposed shared-resource scope, user group, catalogue, identity, delivery plan, or applicable obligation | Open |
+| QST-017 | Question | What decision and accountable owner will record the supplied Azure, Landing Zone, and infrastructure-as-code technical direction outside this SOR? | Executive sponsor | Before technical-design work under TD-001 | Open |
+| DEC-001 | Decision | The active Draft scope is a shared foundation and shared resources for future shared use, not Platform Engineering. Application onboarding, deployment, and cost management remain application responsibilities. | Executive sponsor | Revisit on material scope change | Draft; user-provided input recorded, not approved |
+| DEC-002 | Decision | Growth reassessment records its trigger-selection basis and reassessment action without a fixed trigger catalogue. | Shared-foundation owner | When ALZ-PLT-130 is prepared or reassessed | Draft |
+| DEC-003 | Decision | ALZ-PLT-129 verification tests one representative privileged-access change condition and one representative shared-foundation change condition, not every configured alert condition. | User | When ALZ-PLT-129 verification is planned or reassessed | Draft |
+| DEC-004 | Decision | The executive sponsor authorizes each defined shared resource's intended users. The documented scope-and-responsibility record identifies intended users, authorization basis or evidence is retained, and shared-use verification demonstrates use only for users so authorized. This does not specify an authorization mechanism, timing, identity, or policy. | Executive sponsor | Before providing each defined shared resource or accepting ALZ-PLT-126 evidence | Draft; user-provided input recorded, not approved |
+
+## Traceability
+
+All lifecycle links are **Unverified for Draft**. No entry demonstrates delivery, verification, acceptance, an approved exception, baseline approval, or production-entry authorization.
+
+| SOR ID | Source | Design/delivery link | Verification evidence | Acceptance status |
+| --- | --- | --- | --- | --- |
+| ALZ-PLT-127 | EVD-002, EVD-006, EVD-011 | Unverified; privileged-access and recovery technical design pending QST-004 | Unverified; access and recovery test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-128 | EVD-002, EVD-006, EVD-011 | Unverified; authentication-protection technical design pending QST-004 | Unverified; authentication-factor test required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-125 | EVD-006, EVD-011 | Unverified; controlled-record technical design pending QST-005 and TD-001 | Unverified; reconciliation inspection and representative update demonstration required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-129 | EVD-002, EVD-008, EVD-011 | Unverified; alert inputs and representative conditions pending QST-006 | Unverified; configured-alert inspection and two representative alert tests required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-130 | EVD-002, EVD-007, EVD-011 | Unverified; growth reassessment record pending QST-016 | Unverified; inspection of documented trigger-selection basis and reassessment action required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-123 | EVD-006, EVD-011 | Unverified; responsibility-boundary and shared-resource scope records pending QST-016 | Unverified; boundary-record inspection required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-124 | EVD-002, EVD-006, EVD-011 | Unverified; shared-foundation activity and alert input pending QST-006 | Unverified; retrieval demonstration required | Unverified; Martyn Fewtrell evidence acceptance required |
+| ALZ-PLT-126 | EVD-012, EVD-013 | Unverified; defined shared-resource scope, responsibilities, intended users, executive-sponsor authorization basis or evidence, and applicable obligations pending QST-016 | Unverified; inspect the scope-and-responsibility record and retained authorization basis or evidence, then demonstrate shared use only by intended users covered by that evidence for every defined resource | Unverified; Martyn Fewtrell evidence acceptance required, distinct from intended-user authorization |
+
+### Active Lifecycle Detail
+
+All lifecycle links below are **Unverified for Draft**. No entry demonstrates delivery, verification, acceptance, an approved exception, baseline approval, or production-entry authorization.
+
+#### ALZ-PLT-127
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-006, EVD-011 |
+| Design or work item | Unverified; technical-design work pending QST-004 |
+| Implementation configuration | Unverified; privileged-access and recovery record required |
+| Deployment | Unverified |
+| Verification | Unverified; access and recovery test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-128
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-006, EVD-011 |
+| Design or work item | Unverified; technical-design work pending QST-004 |
+| Implementation configuration | Unverified; authentication-protection evidence required |
+| Deployment | Unverified |
+| Verification | Unverified; authentication-factor test required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-125
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-006, EVD-011 |
+| Design or work item | Unverified; technical-design work pending QST-005 and TD-001 |
+| Implementation configuration | Unverified; controlled responsibility, intended-state, observed-state, and reconciliation records required |
+| Deployment | Unverified |
+| Verification | Unverified; reconciliation inspection and representative update demonstration required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-129
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-008, EVD-011 |
+| Design or work item | Unverified; alert inputs and representative conditions pending QST-006 |
+| Implementation configuration | Unverified; configured-alert record required |
+| Deployment | Unverified |
+| Verification | Unverified; configured-alert inspection and two representative alert tests required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-130
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-007, EVD-011 |
+| Design or work item | Unverified; growth reassessment work pending QST-016 |
+| Implementation configuration | Unverified; growth reassessment record required |
+| Deployment | Unverified |
+| Verification | Unverified; inspection of documented trigger-selection basis and reassessment action required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-123
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-006, EVD-011 |
+| Design or work item | Unverified; responsibility-boundary work pending QST-016 |
+| Implementation configuration | Unverified; responsibility-boundary and shared-resource scope records required |
+| Deployment | Unverified |
+| Verification | Unverified; boundary-record inspection required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-124
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-002, EVD-006, EVD-011 |
+| Design or work item | Unverified; activity and alert input pending QST-006 |
+| Implementation configuration | Unverified; activity-information record required |
+| Deployment | Unverified |
+| Verification | Unverified; retrieval demonstration required |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required |
+| Last reviewed | 2026-08-04 |
+
+#### ALZ-PLT-126
+| Field | Value |
+| --- | --- |
+| Source/rationale | EVD-012, EVD-013 |
+| Design or work item | Unverified; scope, responsibilities, intended users, executive-sponsor authorization basis or evidence, and applicable obligations pending QST-016 |
+| Implementation configuration | Unverified; defined shared-resource scope-and-responsibility record identifying intended users and retained executive-sponsor authorization basis or evidence required |
+| Deployment | Unverified |
+| Verification | Unverified; inspect the scope-and-responsibility record and retained authorization basis or evidence, then demonstrate shared use only by intended users covered by that evidence for every defined resource |
+| Acceptance/exception | Unverified; Martyn Fewtrell evidence acceptance required, distinct from intended-user authorization |
+| Last reviewed | 2026-08-04 |
+
+## Legacy Requirement Retirement Register
+
+| Retired ID | Status | Rationale | Replacement ALZ-PLT ID(s) |
+| --- | --- | --- | --- |
+| ALZ-PLT-121 | Retired | Its materially changed deployment-and-management outcome is retired; its controlled-definition and management outcome is separately restated without reusing the ID. | ALZ-PLT-125 |
+| ALZ-PLT-117 | Retired | Its initial-application placement intent materially changed to shared-foundation and application responsibility boundaries. | ALZ-PLT-123 |
+| ALZ-PLT-118 | Retired | Dedicated test and production environments for one initial application conflict with the revised shared-foundation scope. | No replacement |
+| ALZ-PLT-105 | Retired | Application resource-configuration evaluation is an application responsibility under the revised scope. | No replacement |
+| ALZ-PLT-106 | Retired | Its application-diagnostic collection intent materially changed to shared-foundation activity visibility. | ALZ-PLT-124 |
+| ALZ-PLT-108 | Retired | Application stateful-component recovery is an application responsibility under the revised scope. | No replacement |
+| ALZ-PLT-109 | Retired | Application cost management is explicitly outside the shared-foundation scope. | No replacement |
+| ALZ-PLT-122, ALZ-PLT-114, ALZ-PLT-115 | Retired | Application-specific connectivity is outside the revised scope. | No replacement |
+| ALZ-PLT-116 | Retired | Application applicability assessment and consumption evidence conflict with the boundary that applications own onboarding and deployment. | No replacement |
+| ALZ-PLT-119 | Retired | Its initial-application privileged-access and recovery subject materially changed to the future shared foundation. | ALZ-PLT-127 |
+| ALZ-PLT-120 | Retired | Its initial-application authentication-resilience subject materially changed to the future shared foundation. | ALZ-PLT-128 |
+| ALZ-PLT-107 | Retired | Its initial-application alerting subject materially changed to the future shared foundation. | ALZ-PLT-129 |
+| ALZ-PLT-111 | Retired | Its initial-application growth-reassessment subject materially changed to the future shared foundation. | ALZ-PLT-130 |
+
+## Quality Review
+
+| Check | Result | Finding |
+| --- | --- | --- |
+| Draft status and approval authority are recorded | Pass with limitation | Martyn Fewtrell is named, but no approval, acceptance, exception approval, or production-entry authorization is recorded. |
+| Decision, audience, scope, time boundary, and evidence are recorded | Pass | EVD-011 records the active scope; EVD-012 records the shared-resource decision; EVD-013 records intended-user authorization and verification; EVD-003 through EVD-005 and EVD-009 are retained as superseded evidence. |
+| Facts, technical-design dependencies, and unknowns are distinct | Pass with limitation | TD-001 retains the supplied technical-design direction as an external technical-design dependency; QST-017 owns its disposition. QST-004 through QST-006, QST-010, and QST-016 remain open. |
+| Registers are separate and owned | Pass with limitation | QST-004 through QST-006, QST-010, QST-016, and QST-017 remain open; shared-foundation and application owners are not named. |
+| Mandatory requirements have complete metadata | Pass | Active requirements have stable IDs, owner, priority, status, source/rationale, dependency, verification, pass criterion, evidence, and acceptance authority. ALZ-PLT-126 retains intended-user authorization evidence separately from evidence acceptance. |
+| Requirements are outcome-oriented and solution-neutral | Pass with limitation | Active requirements do not prescribe products, platforms, architecture, configurations, hosting arrangements, authorization mechanisms, or delivery methods. An audit found the technical terms externalized to TD-001 only in TD-001 and QST-017; all active requirements remain unverified. |
+| Material traceability is complete | Pass with limitation | Each active requirement has source/rationale, design or work item, implementation/configuration, deployment, verification, acceptance/exception, and last-reviewed fields. ALZ-PLT-126 identifies intended users, retained executive-sponsor authorization basis or evidence, and shared-use verification. All lifecycle fields remain Unverified for Draft. |
+| Markdown rendering and field association | Pass | Requirement metadata and active lifecycle detail use individual two-column field/value tables. Active tables have matched delimiter columns. |
+
+**Unverified at stakeholder review:** QST-004 through QST-006, QST-010, QST-016, and QST-017; named shared-foundation and application owners; all technical-design, delivery, verification, intended-user authorization, acceptance, and lifecycle evidence. QST-016 must be answered for each defined shared resource before it is provided or evidence for ALZ-PLT-123 or ALZ-PLT-126 is accepted.
+
+## Approval and Change History
+
+| Version | Date | Change summary | Drafted by | Approved by | Approval status |
+| --- | --- | --- | --- | --- | --- |
+| 2.1 | 2026-08-03 | Previous application-centric Draft; retained as hidden historical material for traceability. | GitHub Copilot | Not approved | Draft |
+| 3.0 | 2026-08-04 | Material Draft scope change: revised the SOR to a shared foundation and shared resources for future shared use; excluded Platform Engineering and application onboarding, deployment, and cost management; added ALZ-PLT-123 and ALZ-PLT-124; revised ALZ-PLT-121; retired application-centric requirements; added EVD-011, ASM-004, RSK-005, and QST-016. No approval was made. | GitHub Copilot | Not approved | Draft |
+| 3.1 | 2026-08-04 | Accepted independent-review corrections and user decision: removed technical solution prescriptions from active SOR content; retained supplied technical direction as external technical-design dependency TD-001 and added QST-017; retired ALZ-PLT-121 and added ALZ-PLT-125 for the materially changed controlled-definition and management outcome; added approved outcome-only shared-resource requirement ALZ-PLT-126 and EVD-012; extended QST-016, ASM-004, and RSK-005 for per-resource applicable obligations; and completed active lifecycle detail. No approval was made. | GitHub Copilot | Not approved | Draft |
+| 3.2 | 2026-08-04 | Accepted independent-review corrections and user decision: retired ALZ-PLT-119, ALZ-PLT-120, ALZ-PLT-107, and ALZ-PLT-111 and replaced them with ALZ-PLT-127 through ALZ-PLT-130 for the materially changed future shared-foundation scope; made ALZ-PLT-126 and all active SOR supporting content solution-neutral for authorized shared use; moved the supplied hosting prescription to external technical-design dependency TD-001; and changed QST-016 to require its scope-and-responsibility definition artifact before shared-resource provision or evidence acceptance, not before definition. No approval was made. | GitHub Copilot | Not approved | Draft |
+| 3.3 | 2026-08-04 | Final-review decision: added EVD-013 and DEC-004 to record that the executive sponsor authorizes each defined shared resource's intended users; revised ALZ-PLT-126, QST-016, RSK-005, traceability, lifecycle detail, and verification/acceptance text for retained authorization basis or evidence and authorized-users-only verification; clarified that authorization is distinct from acceptance; and replaced active governance wording with shared-foundation scope change. No approval was made. | GitHub Copilot | Not approved | Draft |

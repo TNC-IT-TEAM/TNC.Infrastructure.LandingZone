@@ -82,7 +82,7 @@ The skill procedure should require the following:
 1. Restate the decision, audience, scope, time boundary, and document authority; ask only for essential missing inputs.
 2. Inspect supplied project evidence before drafting. Record each claim's source and distinguish direct evidence from inference.
 3. Produce an SOR that separates purpose, scope, stakeholders, requirements, acceptance, assumptions, risks, issues, decisions, dependencies, and traceability.
-4. Write only atomic, outcome-oriented, testable requirements. Each mandatory requirement must have an ID, owner, source/rationale, priority, verification method, measurable pass criterion where applicable, and acceptance authority.
+4. Write only atomic, outcome-oriented, testable functional and non-functional user requirements. Exclude all technical solution information, including products, platforms, architecture, designs, configurations, technical mechanisms, and delivery methods. Each mandatory requirement must have an ID, owner, source/rationale, priority, verification method, measurable pass criterion where applicable, and acceptance authority.
 5. Flag missing or unverified facts as open questions. Never invent thresholds, laws, stakeholder approvals, product constraints, cost limits, or contractual commitments.
 6. Run the bundled quality checklist and report failures before presenting a draft as ready for stakeholder review.
 7. Require a named human baseline approval and change-control record; state that draft status is not approval.
@@ -131,7 +131,7 @@ The orchestrator must not bypass the reviewer for a material SOR change, make ed
 
 Create a user-level custom agent with the workspace read, search, and edit tools required to create and revise the SOR, requirement register, and traceability register. Set `user-invocable: false` so it is used through the orchestrator, and leave model invocation enabled so the named parent can delegate to it. It should use the `statement-of-requirements` skill and create files only in the location requested or established by the project's instruction file.
 
-Its body should require evidence-first drafting, explicit `Draft` status, and a summary of changes and unresolved questions after each edit. It must not invent project facts, silently convert assumptions into requirements, approve a baseline, accept risk, or provide legal or procurement advice. Give it no terminal, external-system, or MCP tool by default; add such a tool only when a project has an approved need and the minimum access has been reviewed.
+Its body should require evidence-first drafting, explicit `Draft` status, and a summary of changes and unresolved questions after each edit. It must keep the SOR to functional and non-functional user requirements and exclude all technical solution information. It must not invent project facts, silently convert assumptions into requirements, approve a baseline, accept risk, or provide legal or procurement advice. Give it no terminal, external-system, or MCP tool by default; add such a tool only when a project has an approved need and the minimum access has been reviewed.
 
 ### 5. Personal read-only `requirements-reviewer` subagent
 
@@ -141,7 +141,7 @@ The agent's review checklist should inspect:
 
 - Requirement IDs, duplicate or conflicting requirements, and stated priority/owner.
 - Atomicity, normative language, objective condition, threshold/unit, and feasible verification method.
-- Outcome focus versus unnecessary design prescription.
+- Functional and non-functional user requirements only, with no technical solution information.
 - Scope boundaries, dependencies, interfaces, security/privacy, operations, recovery, cost, lifecycle, and acceptance coverage relevant to the project.
 - Traceability to a source, design/work item, evidence, acceptance status, and approved exception where required.
 - Clear separation of fact, assumption, decision, risk, issue, question, and recommendation.

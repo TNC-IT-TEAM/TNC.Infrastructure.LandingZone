@@ -21,7 +21,7 @@ Assess:
 
 1. Unique IDs, duplicate or conflicting requirements, stated owner, priority, status, source or rationale, and dependency.
 2. Atomicity, normative language, objective condition, threshold and unit where relevant, and feasible verification method.
-3. Outcome focus versus unnecessary design prescription, with technical constraints supported by evidence.
+3. Functional and non-functional user requirements only, with no technical solution information: products, platforms, architecture, designs, configurations, technical mechanisms, or delivery methods. Treat any such content as a finding regardless of its source.
 4. Scope boundaries, governance, capabilities, dependencies, interfaces, security, privacy, quality, operations, recovery, lifecycle, cost, and acceptance coverage where applicable.
 5. Traceability from each material requirement to source, design or work item, implementation or delivery, evidence, acceptance status, or approved exception.
 6. Clear separation of requirements from assumptions, risks, issues, questions, decisions, and recommendations.

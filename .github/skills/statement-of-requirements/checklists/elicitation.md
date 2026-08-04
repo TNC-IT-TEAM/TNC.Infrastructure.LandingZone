@@ -15,11 +15,11 @@ Ask only questions needed to proceed. Record supplied answers as user-provided i
 ## Capabilities and Constraints
 
 - Which user journeys, capabilities, service outcomes, business rules, interfaces, and dependencies are mandatory?
-- Which legal, regulatory, commercial, location, schedule, legacy, interoperability, or platform constraints are evidenced?
+- Which legal, regulatory, commercial, location, schedule, interoperability, or other user constraints are evidenced? Record any technical solution information separately from the SOR.
 
 ## Security, Privacy, and Quality
 
-- Which data classifications, access, audit, encryption, retention, residency, safety, accessibility, and assurance obligations apply?
+- Which data classifications, access, audit, retention, residency, safety, accessibility, and assurance obligations apply?
 - What performance, capacity, availability, durability, recovery, continuity, support, maintainability, and observability outcomes are required?
 
 ## Operations and Commercial Control
