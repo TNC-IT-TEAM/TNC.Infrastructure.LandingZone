@@ -18,12 +18,12 @@ Adopt six artifacts as one small delivery package:
 
 1. A versioned plan instance for each approved work item at `docs/plans/<work-item>.md`.
 2. A `work-item-plan-authoring` skill containing the source-extraction workflow, plan template, and plan quality gate.
-3. A `work-item-planner` custom agent that may inspect repository context and write only the requested plan.
-4. A `work-item-plan-reviewer` custom agent with read and search tools only, returning independent findings against the plan quality gate.
-5. A `create-work-item-plan` prompt that explicitly starts the planner with source, work-item identifier, and target plan path.
+3. A `work-item-plan-orchestrator` custom agent that coordinates planning and review but does not edit plans or approve them.
+4. A `work-item-planner` subagent that may inspect repository context and write only the requested plan.
+5. A `work-item-plan-reviewer` subagent with read and search tools only, returning independent findings against the plan quality gate.
 6. A path-specific instruction for `docs/plans/**/*.md` that preserves stable plan conventions without adding planning procedure to every Copilot interaction.
 
-This package is sufficient to produce reviewable, agent-executable plans from research documents. Do not add a delivery coordinator, implementation agent, hooks, MCP server, or repository-wide instructions yet. The repository has no implementation code, authoritative validation commands, CI workflow, deployment procedure, or chosen first work item; those facts are necessary to safely configure execution authority and deterministic checks.
+This package is sufficient to produce reviewable, agent-executable plans from research documents. Do not add a plan-creation prompt, implementation agent, hooks, MCP server, or repository-wide instructions yet. The repository has no implementation code, authoritative validation commands, CI workflow, deployment procedure, or chosen first work item; those facts are necessary to safely configure execution authority and deterministic checks.
 
 ## Findings
 
@@ -33,7 +33,7 @@ This package is sufficient to produce reviewable, agent-executable plans from re
 - The repository has requirement authoring, orchestration, and review agents. The `Requirements-orchestrator` delegates only to named author and reviewer workers and does not edit documents itself. Its reviewer is independent and read-only. [Requirements orchestrator](../../.github/agents/requirements-orchestrator.agent.md) and [requirements reviewer](../../.github/agents/requirements-reviewer.agent.md), reviewed 2026-08-05.
 - The approved landing-zone SOR is an authority for outcomes, pass criteria, evidence, and named-human acceptance, but explicitly excludes technical design, delivery, verification evidence, individual acceptance, and technical-design approval from its completed baseline. [Statement of Requirements: Landing Zone](../requirements/azure-landing-zone.md), version 1.0 dated 2026-08-04.
 - The existing plan research recommends a plan per independently reviewable work item, stored under `docs/plans/`, with source extraction, scope boundaries, target map, atomic ordered tasks, per-task validation, final acceptance, and escalation conditions. It explicitly says that research alone is not an execution recipe. [Agent-Executable Plans for Individual Work Items](./lightweight-copilot-delivery-plan-best-practices.md), dated 2026-08-05.
-- The repository has agents, prompts, and skills for research and requirements, but has no `docs/plans/` files, planner or delivery-plan-reviewer agent, plan-authoring skill, plan-specific prompt, or `.github/instructions/` directory. Repository inventory reviewed 2026-08-05.
+- The repository has agents, prompts, and skills for research and requirements, but has no `docs/plans/` files, plan-orchestrator, planner or delivery-plan-reviewer agent, plan-authoring skill, or `.github/instructions/` directory. Repository inventory reviewed 2026-08-05.
 - VS Code documents Agent Skills as task-specific workflows that can include templates and other linked resources, while instructions are durable rules automatically applied by scope. It requires a skill's name to match its directory and says the description must explain both capability and when to use it. [Use Agent Skills in VS Code](https://code.visualstudio.com/docs/agent-customization/agent-skills), updated 2026-07-29.
 - VS Code custom agents can define distinct instructions and tool lists. The documentation presents a planning agent with read-only tools and an implementation agent with editing capability as an appropriate separation. [Custom agents in VS Code](https://code.visualstudio.com/docs/agent-customization/custom-agents), updated 2026-07-29.
 - VS Code subagents perform a focused subtask and return a summary to a parent. A coordinator can restrict subagent selection with an explicit `agents` list, and custom subagent settings override inherited tools and instructions. [Subagents in Visual Studio Code](https://code.visualstudio.com/docs/agents/subagents), updated 2026-07-29.
@@ -44,7 +44,7 @@ This package is sufficient to produce reviewable, agent-executable plans from re
 1. The gap is not research quality or requirement control; it is an owned conversion step between an approved source and an implementation-ready plan. Reusing the research agent would blur its `docs/research/` output boundary, while extending the requirements orchestrator would mix requirement-baseline governance with delivery planning.
 2. A skill should own the plan-authoring method because it is a repeatable multi-step procedure with reusable resources: source extraction, plan template, quality gate, and blocker-report format. A plan instance should remain outside the skill because it is work-item evidence, not a reusable resource.
 3. A planner and reviewer should be separate custom agents. The planner needs repository read/search access and a constrained document-editing responsibility; the reviewer needs only read/search access and must not approve a plan. This follows the repository's requirements-agent pattern and the documented least-privilege separation between planning and implementation roles.
-4. A custom coordinator is not required in the first version. A human can invoke the plan prompt, review the plan, request reviewer findings, and approve the result. Adding a coordinator before the first trial would add another permission, handoff, and maintenance boundary without addressing an observed need.
+4. The user has selected an agent-orchestrated workflow rather than a prompt-based workflow. The orchestrator should own sequencing, delegation, and synthesis while the planner and reviewer own their separate specialist responsibilities. It should have no edit authority, use an explicit two-agent allowlist, and leave plan approval to the named human.
 5. An implementation agent cannot be safely standardized yet. Agent-executable plans require actual targets, commands, expected results, and escalation conditions, but the repository has not yet established the Terraform layout, build or validation commands, CI workflow, deployment procedure, or approved technical design.
 
 ## Required Artifact Set
@@ -55,9 +55,9 @@ This package is sufficient to produce reviewable, agent-executable plans from re
 | Plan-authoring skill | `.github/skills/work-item-plan-authoring/SKILL.md` | Owns the reusable research-to-plan method. | Valid skill metadata, source-authority gate, discovery-or-escalation rule, plan quality gate, report format, and direct links to all bundled resources. | Skill name matches directory; referenced resources resolve; skill passes its authoring checks. |
 | Plan template | `.github/skills/work-item-plan-authoring/templates/work-item-plan.md` | Reusable resource owned by the skill. | The plan format recommended in the existing plan research, with no unresolved placeholders permitted in an implementation-ready plan. | A sample plan can be created without changing template structure. |
 | Plan quality checklist | `.github/skills/work-item-plan-authoring/references/plan-quality-gate.md` | Reusable reviewer and author checklist. | The ten quality questions from the existing plan research, plus checks for approved authority, valid destination, source conflict, and named human acceptance. | Reviewer output identifies a pass, finding, or blocker for every criterion. |
-| Planner custom agent | `.github/agents/work-item-planner.agent.md` | Creates or revises exactly one plan after inspection. | Read, search, and edit access; edits only the requested `docs/plans/` file; no source approval, requirement acceptance, implementation, deployment, or broad refactoring; reports source use, unknowns, and plan validation. | A representative plan includes every required section and stops on a material unknown. |
-| Plan reviewer custom agent | `.github/agents/work-item-plan-reviewer.agent.md` | Independently tests whether a draft plan is executable and appropriately bounded. | Read/search tools only; findings-first output; no edits, approval, or inferred technical decision; validates sources, atomicity, target discovery, commands, expected results, scope, and escalation. | Independent review covers the quality checklist and identifies remaining human decisions. |
-| Plan-creation prompt | `.github/prompts/create-work-item-plan.prompt.md` | Human-invoked entry point that reliably supplies the planner's inputs. | Selects `work-item-planner`; asks for source path and exact heading/ID, work-item identifier, requested plan path, approval status, and approver; rejects invalid destinations. | Invocation produces either one plan draft or the specified blocker report. |
+| Plan orchestrator custom agent | `.github/agents/work-item-plan-orchestrator.agent.md` | Human-invoked coordinator for one planning workflow. | Read, search, and `agent/runSubagent` access; `agents: [work-item-planner, work-item-plan-reviewer]`; no edit access; validates inputs, delegates drafting then independent review, routes accepted findings to the planner, and reports unresolved decisions. | The workflow returns a reviewed plan or one blocker report, with each delegation and review disposition recorded. |
+| Planner subagent | `.github/agents/work-item-planner.agent.md` | Creates or revises exactly one plan when delegated by the orchestrator. | `user-invocable: false`; read, search, and edit access; edits only the requested `docs/plans/` file; no source approval, requirement acceptance, implementation, deployment, or broad refactoring; reports source use, unknowns, and plan validation. | A representative plan includes every required section and stops on a material unknown. |
+| Plan reviewer subagent | `.github/agents/work-item-plan-reviewer.agent.md` | Independently tests whether a draft plan is executable and appropriately bounded when delegated by the orchestrator. | `user-invocable: false`; read/search tools only; findings-first output; no edits, approval, or inferred technical decision; validates sources, atomicity, target discovery, commands, expected results, scope, and escalation. | Independent review covers the quality checklist and identifies remaining human decisions. |
 | Plan path instruction | `.github/instructions/work-item-plans.instructions.md` | Applies stable document conventions only when plan files are in scope. | `applyTo: "docs/plans/**/*.md"`; one plan per file; lowercase-hyphenated filename; required status and source metadata; never self-accept; link source anchors; do not use a plan to amend a requirement or decision. | VS Code customization diagnostics discovers it and it does not conflict with the skill or agents. |
 
 The first and final rows are needed for every work item and repository-wide plan consistency respectively. The middle rows form the reusable planning capability. The template and quality checklist should be bundled under the skill rather than created as freestanding policy documents because they are procedural resources loaded only for relevant planning work.
@@ -67,15 +67,28 @@ The first and final rows are needed for every work item and repository-wide plan
 ```text
 Approved research / SOR / decision / issue
   -> Human selects one bounded outcome and approval authority
-  -> /create-work-item-plan invokes work-item-planner
+  -> work-item-plan-orchestrator validates inputs and delegates work-item-planner
   -> Planner writes docs/plans/<work-item>.md or returns a blocker
-  -> work-item-plan-reviewer provides independent findings
-  -> Human resolves findings and approves plan for implementation
+  -> Orchestrator delegates work-item-plan-reviewer for independent findings
+  -> Orchestrator delegates accepted remediations to planner or returns human decisions
+  -> Human resolves material decisions and approves plan for implementation
   -> Implementation agent executes only the approved plan
   -> Human reviews evidence and records acceptance
 ```
 
-The plan itself, not the planner's chat transcript, is the handoff artifact to the implementation agent. The planner must link the precise research heading, SOR requirement, decision, or issue that authorizes each material task. A research recommendation is not authorization until the named human marks it approved for that work item.
+The plan itself, not the orchestrator's or subagents' chat transcripts, is the handoff artifact to the implementation agent. The planner must link the precise research heading, SOR requirement, decision, or issue that authorizes each material task. A research recommendation is not authorization until the named human marks it approved for that work item.
+
+### Orchestrator Contract
+
+The orchestrator should be the only user-invocable planning role. It should have `read`, `search`, and `agent/runSubagent` access, an explicit `agents` allowlist containing only `work-item-planner` and `work-item-plan-reviewer`, and no `edit` or terminal access. Its contract should require it to:
+
+1. Confirm the source path and precise authority anchor, work-item identifier, requested plan destination, approval status, and human approver.
+2. Reject a destination that is not Markdown directly under `docs/plans/`.
+3. Delegate plan drafting to the planner with only the source, scope, target destination, and relevant repository context.
+4. Delegate the completed draft to the reviewer without asking it to edit or approve.
+5. Categorize review findings as planner-remediable or requiring a named human decision; delegate only remediable changes back to the planner.
+6. Stop and return the plan's blocker-report format when authority, scope, security, technical design, or required validation remains unresolved.
+7. Report the final plan path, each subagent result, reviewer-findings disposition, validation limitations, and outstanding human approval action. It must not approve, accept, or implement the plan.
 
 ### Planner Contract
 
@@ -96,7 +109,7 @@ The reviewer must treat a plan as insufficient when it requires the future execu
 
 | Artifact | Decision | Rationale and activation condition |
 | --- | --- | --- |
-| Delivery-plan coordinator agent | Defer. | A planner prompt plus independent reviewer is adequate for the first trial. Add a coordinator only after repeated manual handoff errors or a demonstrated need to coordinate planner, implementer, and reviewer workers. |
+| Plan-creation prompt | Do not create. | The selected orchestrator supplies the controlled entry point, sequencing, and review loop. A parallel prompt would duplicate invocation paths and potentially override the orchestrator's tool constraints. |
 | Implementation agent | Defer. | No actual implementation tree, validation commands, CI, deployment process, or approved technical design exists. Add only after one low-risk plan names real checks and its implementation boundaries are understood. |
 | Implementation-review agent | Defer. | Plan review is required now; code or infrastructure review should be designed after the toolchain and risk controls are known. |
 | Repository-wide `.github/copilot-instructions.md` | Defer. | The current durable rules are confined to planning documents. Do not use always-on instructions for a procedure that only applies to work-item plans. |
@@ -111,16 +124,16 @@ The reviewer must treat a plan as insufficient when it requires the future execu
 | --- | --- | --- | --- |
 | Pass research documents directly to the implementation agent | No new artifacts. | Forces the implementation agent to interpret recommendation status, scope, technical targets, task order, and validation; research is not a work-item execution record. | Contradicts the existing work-item-plan recommendation. |
 | Add only a plan template under `docs/plans/` | Fast to begin and low maintenance. | Consistency, source extraction, quality review, and stop behavior depend on each author remembering the process. | Suitable only for a one-off, human-authored plan. |
-| Recommended: skill, template, planner, reviewer, prompt, scoped instruction, and plan instances | Separates durable rules, repeatable procedure, role permissions, independent review, explicit invocation, and work-item evidence. | Seven repository artifacts plus one plan per work item require ownership and realistic testing. | Fits VS Code customization boundaries and existing research/requirements patterns. |
-| Add a full coordinator, implementation, review, hooks, and MCP suite now | Strong automation potential. | Would encode unknown commands, permissions, designs, and rollout controls; high maintenance and unsafe implied authority. | Current repository evidence does not justify these controls. |
+| Recommended: skill, template, orchestrator, planner subagent, reviewer subagent, scoped instruction, and plan instances | Separates durable rules, repeatable procedure, orchestration, specialist permissions, independent review, and work-item evidence. | Six customization artifacts plus one plan per work item require ownership and realistic testing. | Fits VS Code coordinator-worker support and the repository's existing requirements-orchestrator pattern. |
+| Add implementation, implementation review, hooks, and MCP now | Strong automation potential. | Would encode unknown commands, permissions, designs, and rollout controls; high maintenance and unsafe implied authority. | Current repository evidence does not justify these controls. |
 
 ## Recommendation
 
-Create the recommended package in one controlled follow-up work item, beginning with the `work-item-plan-authoring` skill and its template and quality-gate resources. Then add the planner and independent reviewer agents, the explicit prompt, and the `docs/plans` path instruction. Create the directory through the first real plan rather than adding an empty placeholder document.
+Create the recommended package in one controlled follow-up work item, beginning with the `work-item-plan-authoring` skill and its template and quality-gate resources. Then add the `work-item-plan-orchestrator`, `work-item-planner`, and `work-item-plan-reviewer` agents, followed by the `docs/plans` path instruction. Configure the planner and reviewer as non-user-invocable subagents, and make the orchestrator the single user-invocable entry point with an explicit two-agent allowlist. Create the directory through the first real plan rather than adding an empty placeholder document.
 
 Use the existing [research authoring skill](../../.github/skills/research-authoring/SKILL.md), [Researcher agent](../../.github/agents/researcher.agent.md), and [requirements orchestrator](../../.github/agents/requirements-orchestrator.agent.md) unchanged as upstream evidence and governance inputs. Do not make them create delivery plans: their current output boundaries are appropriately narrower.
 
-Pilot the package on one low-risk documentation or configuration work item whose source is already approved. A plan passes the pilot only if the planner can name each source anchor, target, preservation boundary, command, expected result, evidence location, and human acceptance action without an unplanned design decision. Record whether the planner needed to invent a value, the reviewer found a material omission, the executing agent left scope, or a named check could not run. Those outcomes determine whether a coordinator or implementation-specific artifacts are warranted.
+Pilot the package on one low-risk documentation or configuration work item whose source is already approved. A plan passes the pilot only if the planner can name each source anchor, target, preservation boundary, command, expected result, evidence location, and human acceptance action without an unplanned design decision, and if the orchestrator correctly routes reviewer findings without editing or approving the plan. Record whether the planner needed to invent a value, the reviewer found a material omission, the orchestrator misrouted a finding, the executing agent left scope, or a named check could not run. Those outcomes determine whether implementation-specific artifacts are warranted.
 
 ## Open Questions and Limitations
 
