@@ -1,10 +1,10 @@
 # Plan: <short work-item name>
 
-<!-- File: docs/plans/<lowercase-hyphenated-work-item-name>.md -->
+<!-- This template must be written as a physical file at docs/plans/<lowercase-hyphenated-work-item-name>.md. -->
 
 > Status: Draft | Approved for implementation | Blocked | Ready for review | Accepted
 > Work item: <GitHub issue URL or identifier>
-> Source of authority: <path or URL and exact heading, requirement ID, decision ID, or issue anchor>
+> Source documents: <one or more paths or URLs and exact headings, requirement IDs, decision IDs, or issue anchors>
 > Prepared: <YYYY-MM-DD>
 > Human approver: <named person or role>
 
@@ -14,9 +14,14 @@ Deliver <one observable result> for <user, operator, or system>.
 
 ## 2. Source Extraction
 
-### Approved to implement
+### Source material for this Draft plan
 
-- <source anchor>: <faithful implementation-relevant statement>
+- <source anchor>: <faithful statement, labelled as fact, recommendation, constraint, or unresolved question>
+
+### Implementation approval status
+
+- <Status>: Draft planning input only | Approved for implementation
+- <Decision or approver>: <record the human decision when available; do not infer it from research>
 
 ### Constraints
 
@@ -65,7 +70,7 @@ Task state: Verified | Ready for review | Blocked. Do not use Complete without o
 - [ ] <observable criterion linked to the source>.
 - [ ] `<exact validation command>` passes with <expected result>.
 - [ ] <manual inspection, demonstration, or security check> is recorded at <location>.
-- [ ] The review record links this work item, source authority, changed files, commands, results, and limitations.
+- [ ] The review record links this work item, source documents, changed files, commands, results, and limitations.
 - [ ] <named human> reviews and records acceptance. The agent must not self-accept.
 
 ## 8. Stop Conditions and Escalation
@@ -79,3 +84,9 @@ Stop and use the blocker report when:
 - A secret, personal data, or production action is required without an explicit authorized procedure.
 
 Blocker report: `step`, `observed fact`, `command/output or path`, `impact`, `decision or input needed`, and `safe next action`.
+
+## 9. File Handoff
+
+- [ ] This plan is saved as a physical Markdown file at `docs/plans/<lowercase-hyphenated-work-item-name>.md`.
+- [ ] The exact file path is reported to the orchestrator and human reviewer.
+- [ ] The saved file was reopened or otherwise inspected after writing, and the required sections are present.

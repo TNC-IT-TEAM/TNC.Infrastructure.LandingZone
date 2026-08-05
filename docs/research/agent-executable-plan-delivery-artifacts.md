@@ -4,26 +4,26 @@
 
 ## Question and Decision
 
-- **Research question:** Given the existing research, custom agents, subagents, skills, and prompts, which repository artifacts are required to reliably turn an approved research document into an agent-executable plan for one work item?
+- **Research question:** Given the existing research, custom agents, subagents, skills, and prompts, which repository artifacts are required to reliably turn one or more research documents into an agent-executable plan for one work item?
 - **Audience:** The repository maintainers, the named human approval authority, and GitHub Copilot agents that research, plan, review, or implement work.
 - **Decision this supports:** Whether to add a small, explicit research-to-plan delivery capability now, and which artifacts to defer until the landing-zone implementation, validation, and operational processes are known.
-- **Scope:** The conversion of an approved research recommendation, SOR requirement, decision, or issue into a reviewable plan under `docs/plans/`. This covers the planning and plan-review boundary, not infrastructure implementation, deployment, issue-tracker configuration, or organisation-wide governance.
+- **Scope:** The conversion of one or more research documents, SOR requirements, decisions, or issues into a reviewable plan under `docs/plans/`. This covers the planning and plan-review boundary, not infrastructure implementation, deployment, issue-tracker configuration, or organisation-wide governance.
 - **Time boundary:** Repository context and public VS Code documentation were reviewed on 2026-08-05. Product capabilities and preview features can change.
 
 ## Executive Summary
 
-The repository needs an explicit **plan-authoring capability**, not another general research workflow. Existing artifacts can create evidence-backed research, establish SOR authority, and run controlled requirement review, but none owns the conversion from an approved source to atomic tasks, target maps, checks, and stop conditions. No `docs/plans/` directory or plan-specific customization currently exists.
+The repository needs an explicit **plan-authoring capability**, not another general research workflow. Existing artifacts can create evidence-backed research, establish SOR authority, and run controlled requirement review, but none owns the conversion from one or more source documents to atomic tasks, target maps, checks, and stop conditions. No `docs/plans/` directory or plan-specific customization currently exists.
 
 Adopt six artifacts as one small delivery package:
 
-1. A versioned plan instance for each approved work item at `docs/plans/<work-item>.md`.
+1. A versioned plan instance for each bounded work item at `docs/plans/<work-item>.md`, drafted from one or more supplied source documents and then submitted for human approval.
 2. A `work-item-plan-authoring` skill containing the source-extraction workflow, plan template, and plan quality gate.
 3. A `work-item-plan-orchestrator` custom agent that coordinates planning and review but does not edit plans or approve them.
 4. A `work-item-planner` subagent that may inspect repository context and write only the requested plan.
 5. A `work-item-plan-reviewer` subagent with read and search tools only, returning independent findings against the plan quality gate.
 6. A path-specific instruction for `docs/plans/**/*.md` that preserves stable plan conventions without adding planning procedure to every Copilot interaction.
 
-This package is sufficient to produce reviewable, agent-executable plans from research documents. Do not add a plan-creation prompt, implementation agent, hooks, MCP server, or repository-wide instructions yet. The repository has no implementation code, authoritative validation commands, CI workflow, deployment procedure, or chosen first work item; those facts are necessary to safely configure execution authority and deterministic checks.
+This package is sufficient to produce reviewable, agent-executable Draft plans from one or more research documents. A research recommendation is sufficient input for plan drafting; it is not implementation authorization. Do not add a plan-creation prompt, implementation agent, hooks, MCP server, or repository-wide instructions yet. The repository has no implementation code, authoritative validation commands, CI workflow, deployment procedure, or chosen first work item; those facts are necessary to safely configure execution authority and deterministic checks.
 
 ## Findings
 
@@ -41,7 +41,7 @@ This package is sufficient to produce reviewable, agent-executable plans from re
 
 ### Inferences
 
-1. The gap is not research quality or requirement control; it is an owned conversion step between an approved source and an implementation-ready plan. Reusing the research agent would blur its `docs/research/` output boundary, while extending the requirements orchestrator would mix requirement-baseline governance with delivery planning.
+1. The gap is not research quality or requirement control; it is an owned conversion step between source documents and a Draft implementation-ready plan. Reusing the research agent would blur its `docs/research/` output boundary, while extending the requirements orchestrator would mix requirement-baseline governance with delivery planning.
 2. A skill should own the plan-authoring method because it is a repeatable multi-step procedure with reusable resources: source extraction, plan template, quality gate, and blocker-report format. A plan instance should remain outside the skill because it is work-item evidence, not a reusable resource.
 3. A planner and reviewer should be separate custom agents. The planner needs repository read/search access and a constrained document-editing responsibility; the reviewer needs only read/search access and must not approve a plan. This follows the repository's requirements-agent pattern and the documented least-privilege separation between planning and implementation roles.
 4. The user has selected an agent-orchestrated workflow rather than a prompt-based workflow. The orchestrator should own sequencing, delegation, and synthesis while the planner and reviewer own their separate specialist responsibilities. It should have no edit authority, use an explicit two-agent allowlist, and leave plan approval to the named human.
@@ -51,7 +51,7 @@ This package is sufficient to produce reviewable, agent-executable plans from re
 
 | Artifact | Required location | Owner and purpose | Minimum content or control | Completion evidence |
 | --- | --- | --- | --- | --- |
-| Work-item plan | `docs/plans/<lowercase-hyphenated-work-item>.md` | Human approver owns authorization; planner drafts the execution record for one work item. | Approved source extraction; objective; scope and non-goals; prerequisites; target map; atomic ordered tasks; expected output; validation gates; final acceptance; stop conditions. | Reviewer can trace every task and check to source authority or repository evidence. |
+| Work-item plan | `docs/plans/<lowercase-hyphenated-work-item>.md` | Planner writes a Draft execution record from one or more source documents; human approver owns plan and implementation authorization. | Source extraction; objective; scope and non-goals; prerequisites; target map; atomic ordered tasks; expected output; validation gates; final acceptance; stop conditions. | The exact file exists, is readable, is handed to the reviewer by path, and the reviewer can trace every task and check to source material or repository evidence. |
 | Plan-authoring skill | `.github/skills/work-item-plan-authoring/SKILL.md` | Owns the reusable research-to-plan method. | Valid skill metadata, source-authority gate, discovery-or-escalation rule, plan quality gate, report format, and direct links to all bundled resources. | Skill name matches directory; referenced resources resolve; skill passes its authoring checks. |
 | Plan template | `.github/skills/work-item-plan-authoring/templates/work-item-plan.md` | Reusable resource owned by the skill. | The plan format recommended in the existing plan research, with no unresolved placeholders permitted in an implementation-ready plan. | A sample plan can be created without changing template structure. |
 | Plan quality checklist | `.github/skills/work-item-plan-authoring/references/plan-quality-gate.md` | Reusable reviewer and author checklist. | The ten quality questions from the existing plan research, plus checks for approved authority, valid destination, source conflict, and named human acceptance. | Reviewer output identifies a pass, finding, or blocker for every criterion. |
@@ -65,45 +65,45 @@ The first and final rows are needed for every work item and repository-wide plan
 ## Proposed Workflow
 
 ```text
-Approved research / SOR / decision / issue
-  -> Human selects one bounded outcome and approval authority
+Research / SOR / decision / issue documents
+  -> Orchestrator selects one bounded outcome and records the human approval gate
   -> work-item-plan-orchestrator validates inputs and delegates work-item-planner
-  -> Planner writes docs/plans/<work-item>.md or returns a blocker
-  -> Orchestrator delegates work-item-plan-reviewer for independent findings
+  -> Planner writes and reopens docs/plans/<work-item>.md or returns a blocker
+  -> Orchestrator verifies the physical file and delegates its path to work-item-plan-reviewer
   -> Orchestrator delegates accepted remediations to planner or returns human decisions
   -> Human resolves material decisions and approves plan for implementation
   -> Implementation agent executes only the approved plan
   -> Human reviews evidence and records acceptance
 ```
 
-The plan itself, not the orchestrator's or subagents' chat transcripts, is the handoff artifact to the implementation agent. The planner must link the precise research heading, SOR requirement, decision, or issue that authorizes each material task. A research recommendation is not authorization until the named human marks it approved for that work item.
+The physical plan file itself, not the orchestrator's or subagents' chat transcripts, is the handoff artifact to the implementation agent. The orchestrator must verify that the exact file exists and is readable before review. The planner must link each material task to precise research headings, SOR requirements, decisions, or issues. Research recommendations are sufficient to draft a `Draft` plan, but the named human must approve the plan before implementation.
 
 ### Orchestrator Contract
 
 The orchestrator should be the only user-invocable planning role. It should have `read`, `search`, and `agent/runSubagent` access, an explicit `agents` allowlist containing only `work-item-planner` and `work-item-plan-reviewer`, and no `edit` or terminal access. Its contract should require it to:
 
-1. Confirm the source path and precise authority anchor, work-item identifier, requested plan destination, approval status, and human approver.
+1. Confirm one or more source paths and precise anchors, work-item identifier, requested plan destination, and human approver for the plan review gate.
 2. Reject a destination that is not Markdown directly under `docs/plans/`.
-3. Delegate plan drafting to the planner with only the source, scope, target destination, and relevant repository context.
-4. Delegate the completed draft to the reviewer without asking it to edit or approve.
+3. Delegate plan drafting to the planner with only the source, scope, target destination, and relevant repository context; require the planner to write the physical file.
+4. Verify that the exact plan file exists and is readable, then delegate its path to the reviewer without asking it to edit or approve.
 5. Categorize review findings as planner-remediable or requiring a named human decision; delegate only remediable changes back to the planner.
-6. Stop and return the plan's blocker-report format when authority, scope, security, technical design, or required validation remains unresolved.
+6. Stop and return the plan's blocker-report format when the sources cannot support a bounded plan. Record unresolved scope, security, technical design, implementation approval, or required validation as explicit plan gates when drafting can still proceed.
 7. Report the final plan path, each subagent result, reviewer-findings disposition, validation limitations, and outstanding human approval action. It must not approve, accept, or implement the plan.
 
 ### Planner Contract
 
 The planner agent should use the existing `Researcher` and requirements artifacts as inputs, not as workers it can freely delegate to. Its contract should require it to:
 
-1. Confirm that the destination is Markdown directly under `docs/plans/`.
-2. Extract only approved claims, constraints, uncertainties, and evidence requirements from named source anchors.
+1. Confirm that the destination is Markdown directly under `docs/plans/` and can be written.
+2. Extract claims, recommendations, constraints, uncertainties, and evidence requirements from all named source anchors, distinguishing proposed research inputs from approved implementation decisions.
 3. Inspect the immediate repository surface needed to replace plan placeholders with real targets, commands, and expected results.
-4. Create a discovery work item or return a blocker if a material target, command, design decision, credential, approval, or acceptance condition is unavailable.
-5. Write one plan only, then check it against the bundled quality gate.
+4. Create a discovery work item or return a blocker if the sources cannot support a bounded objective, or if an implementation-ready task requires a material target, command, design decision, credential, approval, or acceptance condition that is unavailable.
+5. Write one physical plan file only, reopen or inspect it, then check it against the bundled quality gate.
 6. Return changed path, source anchors, validation performed, unresolved assumptions, and human decisions needed. It must not mark the plan approved or accepted.
 
 ### Reviewer Contract
 
-The reviewer must treat a plan as insufficient when it requires the future execution agent to choose an architecture, policy, source value, target location, validation command, expected result, or approval boundary. It should return findings in this order: missing authority or approval, unsafe scope or authority expansion, non-executable target or task, missing validation or evidence, then editorial clarity. It must not repair the plan itself or convert an unapproved research recommendation into a decision.
+The reviewer must first confirm that the supplied physical plan file exists and is readable. It must treat a plan as insufficient for implementation readiness when it requires the future execution agent to choose an architecture, policy, source value, target location, validation command, expected result, or approval boundary. It may pass a `Draft` plan that records those as explicit human gates. It should return findings in this order: missing source traceability or approval gate, unsafe scope or authority expansion, non-executable target or task, missing validation or evidence, then editorial clarity. It must not repair the plan itself or convert a research recommendation into an approved implementation decision.
 
 ## Deferred Artifacts
 
