@@ -6,7 +6,7 @@
 
 - **Research question:** What should a lightweight but detailed plan for one piece of work contain, how should it be derived from research or a similar source, and how should it be written so that a small GitHub Copilot agent can carry it out with very little additional reasoning?
 - **Audience:** The two human project members who approve scope and review changes, plus GitHub Copilot acting as the implementation agent.
-- **Decision this supports:** Whether to adopt a standard, repository-resident implementation-plan format for individual work items rather than use a project plan or a high-level backlog item as the agent's instructions.
+- **Decision this supports:** Whether to adopt a standard implementation-plan format, stored under `docs/plans/`, for individual work items rather than use a project plan or a high-level backlog item as the agent's instructions.
 - **Scope:** A plan for one bounded change, investigation, configuration change, documentation change, defect repair, or small feature. It begins from an approved research document, requirement, issue, decision record, or equivalent source and ends when the specific work item is implemented, verified, and handed back for human review. It does not prescribe project roadmaps, team ceremonies, portfolio reporting, or organisation-mandated controls.
 - **Time boundary:** Public sources and repository context were reviewed on 2026-08-05. GitHub, VS Code, and Copilot capabilities can change.
 
@@ -28,6 +28,8 @@ Research / requirement / decision
 ```
 
 This is proportionate for two people because GitHub Issues and pull requests can hold the work record and implementation evidence, while the plan keeps the source-to-change reasoning durable. GitHub Issues support dependencies, sub-issues, and links to pull requests. [GitHub Docs, About issues, current page reviewed 2026-08-05](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
+
+Store each work-item plan as a Markdown file directly under `docs/plans/`. Use a lowercase, hyphenated descriptive filename, such as `docs/plans/private-administrative-access.md`. The plan's GitHub Issue should link to that file, and the file should identify its Issue in its metadata. Do not store work-item plans in `docs/research/`: research is an input to a plan, not the execution record.
 
 ## Findings
 
@@ -121,6 +123,8 @@ Do not use "complete" as a task state without stating which of these conditions 
 
 ```markdown
 # Plan: <Short work-item name>
+
+<!-- File: docs/plans/<lowercase-hyphenated-work-item-name>.md -->
 
 > Status: Draft | Approved for implementation | Blocked | Ready for review | Accepted
 > Work item: <GitHub issue URL or identifier>
@@ -237,7 +241,7 @@ A `no` answer means the plan needs clarification, discovery, or a human decision
 Give the agent the plan and only the contextual files it needs for the current step. Do not ask it to reinterpret the entire research document on every execution request.
 
 ```text
-Execute steps <N> to <M> of <path to work-item plan>.
+Execute steps <N> to <M> of `docs/plans/<work-item-name>.md`.
 
 Read the plan's source references, preconditions, target map, and the named
 repository instructions before editing. Perform only the stated steps in order.
@@ -278,7 +282,7 @@ This example deliberately leaves paths and values as placeholders. An executable
 
 ## Recommendation
 
-Adopt the work-item plan template and quality gate in this document for consequential changes that will be delegated to a small agent. Treat the plan as an intermediate artefact between research or requirements and implementation.
+Adopt the work-item plan template and quality gate in this document for consequential changes that will be delegated to a small agent. Store each plan directly under `docs/plans/` with a lowercase, hyphenated descriptive filename. Treat the plan as an intermediate artefact between research or requirements and implementation.
 
 The author of the plan should first extract approved claims, constraints, unresolved decisions, and completion evidence from the source. They should then write only atomic tasks with named targets, exact expected outputs, validation gates, and stop conditions. The executing agent should receive the plan and only the plan's relevant contextual files, work through one ordered step at a time, and return evidence or a blocker rather than making a material inference.
 
@@ -288,7 +292,7 @@ For landing-zone delivery, link every work-item plan to the relevant SOR require
 
 ## Open Questions and Limitations
 
-- **Open questions:** Which repository path should contain work-item plans; which build, test, lint, Terraform, security, and deployment commands are authoritative; which decisions and requirements are approved for the first landing-zone work item; and what agent capabilities and permissions will be used?
+- **Open questions:** Which build, test, lint, Terraform, security, and deployment commands are authoritative; which decisions and requirements are approved for the first landing-zone work item; and what agent capabilities and permissions will be used?
 - **Unavailable evidence:** The repository does not yet supply an implementation codebase, actual Terraform layout, CI workflow, issue template, branch policy, deployment process, or a chosen first work item. Therefore the template cannot name real paths, commands, expected outputs, or approvers for a concrete plan.
 - **Conflicting sources:** No direct conflict was found. GitHub and VS Code documentation describe capabilities and recommended interaction patterns, not a mandatory planning format. Scrum describes a complete framework; this document uses only its general evidence on actionable plans, transparency, and completion criteria and does not claim the two-person workflow is Scrum.
 - **Validation limitations:** The proposed format has been checked for internal completeness against the cited guidance but has not yet been trialled against a real work item with the target small agent. Its practical adequacy should be tested on one low-risk work item, measuring whether the agent needed an unplanned decision, touched an unplanned area, or could not run a named validation.
