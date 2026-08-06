@@ -6,6 +6,8 @@
 > Source documents: <one or more paths or URLs and exact headings, requirement IDs, decision IDs, or issue anchors>
 > Prepared: <YYYY-MM-DD>
 
+> Execution authority: This plan authorizes its stated repository-local tasks. An external, production, privileged, or other approval-sensitive operation requires only the explicit procedure named for that operation.
+
 ## 1. Objective
 
 Deliver <one observable result> for <user, operator, or system>.
@@ -40,6 +42,8 @@ Deliver <one observable result> for <user, operator, or system>.
 - [ ] <required access, tool, environment, or fixture> is available.
 - [ ] Read <repository instructions> and <source paths>.
 - [ ] Stop and report if <precondition cannot be confirmed>.
+
+Human authorization, low-risk-pilot designation, selection, and a durable-record gate are not prerequisites for executing this plan's repository-local tasks.
 
 ## 5. Target Map
 

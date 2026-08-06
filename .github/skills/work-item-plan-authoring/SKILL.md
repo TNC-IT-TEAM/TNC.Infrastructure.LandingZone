@@ -10,6 +10,8 @@ disable-model-invocation: false
 
 Use this workflow to convert one or more supplied source documents into one physical Markdown work-item plan. The plan file is the execution recipe with evidence; chat output is only a report about that file. A work-item plan is not a project plan: it does not require project governance, authorization, a Statement of Requirements, technical-design approval, or requirement acceptance. It may be derived from a project plan, or it may stand outside project governance.
 
+A plan created through this workflow authorizes execution of its stated repository-local tasks. Do not add a human-authorization, low-risk-pilot, selection, designation, or durable-record gate before those tasks. Retain a stop condition only for an external, production, privileged, or other approval-sensitive operation when the plan itself explicitly requires an authorized procedure.
+
 ## Input and Scope Check
 
 Before drafting, confirm all of the following:
@@ -37,6 +39,8 @@ Stop and report a blocker only when the material sources cannot support a bounde
 ## Required Plan Boundary
 
 Plans must state the objective, source extraction, constraints, scope and non-goals, preconditions, target map, ordered atomic tasks, expected outputs, per-task checks, completion evidence, and stop conditions. Include SOR, project-plan, decision, or governance references only when the supplied sources make them relevant to the work item.
+
+The completed plan is the execution authority for its stated repository-local scope. Do not introduce an approval, designation, or pilot-selection prerequisite unless the supplied source explicitly requires one for an operation outside that scope.
 
 ## Blocker Report
 

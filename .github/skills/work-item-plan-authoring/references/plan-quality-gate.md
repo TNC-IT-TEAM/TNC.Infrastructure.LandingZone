@@ -13,6 +13,7 @@ The planner produces the physical plan when requested. Use this gate to assess w
 | Falsifiability | Each task has an expected output and a command, inspection, demonstration, or other observable check. |
 | Commands | Each command has a working directory, prerequisites, and an expected result. |
 | Unknowns | Material unknowns have a bounded discovery action or a stop condition; they do not require project governance or authorization to plan the work item. |
+| Execution authority | The completed plan authorizes its stated repository-local tasks and does not add a human-authorization, low-risk-pilot, selection, designation, or durable-record gate. An approval procedure appears only when a supplied source explicitly requires it for an external, production, privileged, or other approval-sensitive operation. |
 | Evidence | Completion evidence links source documents, changed files, validation results, and limitations. |
 | Destination | The plan is a physical Markdown file directly under `docs/plans/` and uses a lowercase, hyphenated filename. |
 | File handoff | The exact file exists, is readable, contains the required sections, and its path is reported; chat output alone does not satisfy delivery. |
